@@ -1,0 +1,47 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package connection;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+/**
+ *
+ * @author Dev
+ */
+public class ConnectionDb {
+
+    Connection cn = null;
+
+    public Connection conectar() 
+            throws SQLException {
+        String url;
+        url = "jdbc:sqlserver://localhost:1433;databaseName=pars;user=sa;password=123";
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            cn = DriverManager.getConnection(url);
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new SQLException(e.getMessage());
+        }
+        return cn;
+    }
+
+    public static void closeRs(ResultSet ars_rs)
+            throws SQLException {
+        if (ars_rs != null) {
+            ars_rs.close();
+        }
+    }
+
+    public static void closePs(PreparedStatement ars_ps)
+            throws SQLException {
+        if (ars_ps != null) {
+            ars_ps.close();
+        }
+    }
+}
