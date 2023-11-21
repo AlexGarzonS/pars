@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package dao;
+package dao.Servicios;
 
 import connection.ConnectionDb;
 import java.sql.PreparedStatement;
@@ -19,6 +19,9 @@ import modelo.Servicios;
 public class ServiciosDao extends ConnectionDb {
 
     private static final String cs_CONSULTASERVICIOS = "Select * from servicios";
+
+    private static final String cs_INSERTAR_SERVICIO = "insert into servicios (nombre_Servicio,descripcion,valor)"
+            + "values (?,?,?)";
 
     public Collection<Servicios> consultaServicios()
             throws SQLException {
@@ -40,12 +43,38 @@ public class ServiciosDao extends ConnectionDb {
             }
         } catch (SQLException e) {
             System.out.println("ServiciosDao::consultaServicios " + e.getMessage());
+            CerraConector();
         } finally {
             closeRs(rs);
             closePs(ps);
         }
 
         return coleccionRetorno;
+    }
+
+    public void insertServicio(Servicios a_servicio)
+            throws SQLException {
+        PreparedStatement ps;
+        ps = null;
+
+        try {
+            int contador;
+            contador = 1;
+            if (a_servicio != null) {
+                ps = conectar().prepareStatement(cs_INSERTAR_SERVICIO);
+                ps.setString(contador++, a_servicio.getNombre_servicio());
+                ps.setString(contador++, a_servicio.getDescripcion());
+                ps.setDouble(contador++, a_servicio.getValor());
+                ps.executeQuery();
+            }
+        } catch (SQLException e) {
+            System.out.println("ServiciosDao::consultaServicios " + e.getMessage());
+            CerraConector();
+        } finally {
+            closePs(ps);
+
+        }
+
     }
 
     private Servicios getDataServices(ResultSet ars)

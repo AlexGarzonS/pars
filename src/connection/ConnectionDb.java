@@ -18,7 +18,7 @@ public class ConnectionDb {
 
     Connection cn = null;
 
-    public Connection conectar() 
+    public Connection conectar()
             throws SQLException {
         String url;
         url = "jdbc:sqlserver://localhost:1433;databaseName=pars;user=sa;password=123";
@@ -29,6 +29,22 @@ public class ConnectionDb {
             throw new SQLException(e.getMessage());
         }
         return cn;
+    }
+    
+    public void CerraConector () 
+    throws SQLException
+    {
+        try {
+            if(cn != null)
+            {
+               if(!cn.isClosed())
+               {
+                   cn.close();
+               } 
+            }
+        } catch (SQLException e) {
+            throw new SQLException(e.getMessage());
+        }
     }
 
     public static void closeRs(ResultSet ars_rs)

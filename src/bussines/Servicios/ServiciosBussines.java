@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package bussines;
+package bussines.Servicios;
 
 import ControlErrores.CollectionsUtils;
-import dao.ServiciosDao;
+import dao.Servicios.ServiciosDao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -43,6 +43,24 @@ public class ServiciosBussines extends CollectionsUtils
         }
         
         return coleccionReturn;
+    }
+    
+    public void insertarServicio(Servicios a_servicios)
+    {
+        try 
+        {
+            ServiciosDao DaoServicio;
+            DaoServicio = new ServiciosDao();
+            
+            if(a_servicios != null)
+            {
+                DaoServicio.insertServicio(a_servicios);
+            }
+
+        } catch (SQLException e) 
+        {
+            System.out.println("ServiciosBussines::insertarServicio"+e.getMessage());
+        }
     }
     
 }
