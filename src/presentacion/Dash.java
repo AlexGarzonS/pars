@@ -49,7 +49,7 @@ public class Dash extends javax.swing.JFrame {
         jButtonPrincipal.setText("PRINCIPAL");
         jButtonPrincipal.setBorder(null);
         jButtonPrincipal.setBorderPainted(false);
-        jButtonPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonPrincipal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPrincipalActionPerformed(evt);
@@ -59,7 +59,7 @@ public class Dash extends javax.swing.JFrame {
         jButtonEventos.setText("EVENTOS");
         jButtonEventos.setBorder(null);
         jButtonEventos.setBorderPainted(false);
-        jButtonEventos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonEventos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonEventos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEventosActionPerformed(evt);
@@ -69,7 +69,7 @@ public class Dash extends javax.swing.JFrame {
         jButtonServicios.setText("SERVICIOS");
         jButtonServicios.setBorder(null);
         jButtonServicios.setBorderPainted(false);
-        jButtonServicios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonServicios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonServicios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonServiciosActionPerformed(evt);
@@ -144,7 +144,7 @@ public class Dash extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addComponent(jPanelhorizontal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
-                .addComponent(jpanelContenido, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE))
+                .addComponent(jpanelContenido, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -170,7 +170,7 @@ public class Dash extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEventosActionPerformed
 
     private void jButtonServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonServiciosActionPerformed
-         showJpanel(new Servicios());
+         showJpanel(new ServiciosP());
     }//GEN-LAST:event_jButtonServiciosActionPerformed
 
     /**

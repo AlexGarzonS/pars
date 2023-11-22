@@ -21,26 +21,26 @@ public class ConnectionDb {
     public Connection conectar()
             throws SQLException {
         String url;
-        url = "jdbc:sqlserver://localhost:1433;databaseName=pars;user=sa;password=123";
+        String className;
+        url = "jdbc:sqlserver://localhost:1433;databaseName=pars;user=sa;password=123;"
+                + "encrypt=true;trustServerCertificate=true";
+        className = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
         try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            Class.forName(className);
             cn = DriverManager.getConnection(url);
         } catch (SQLException | ClassNotFoundException e) {
             throw new SQLException(e.getMessage());
         }
         return cn;
     }
-    
-    public void CerraConector () 
-    throws SQLException
-    {
+
+    public void CerraConector()
+            throws SQLException {
         try {
-            if(cn != null)
-            {
-               if(!cn.isClosed())
-               {
-                   cn.close();
-               } 
+            if (cn != null) {
+                if (!cn.isClosed()) {
+                    cn.close();
+                }
             }
         } catch (SQLException e) {
             throw new SQLException(e.getMessage());

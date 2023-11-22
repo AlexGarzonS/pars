@@ -65,7 +65,7 @@ public class ServiciosDao extends ConnectionDb {
                 ps.setString(contador++, a_servicio.getNombre_servicio());
                 ps.setString(contador++, a_servicio.getDescripcion());
                 ps.setDouble(contador++, a_servicio.getValor());
-                ps.executeQuery();
+                ps.executeUpdate();
             }
         } catch (SQLException e) {
             System.out.println("ServiciosDao::consultaServicios " + e.getMessage());

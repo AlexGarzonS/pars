@@ -4,7 +4,7 @@
  */
 package bussines.Servicios;
 
-import ControlErrores.CollectionsUtils;
+import ControlErrores.ControlErrores;
 import dao.Servicios.ServiciosDao;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import modelo.Servicios;
  *
  * @author Dev
  */
-public class ServiciosBussines extends CollectionsUtils
+public class ServiciosBussines extends ControlErrores
 {
  
     public Collection<Servicios> traerListaServicios ()
@@ -25,11 +25,10 @@ public class ServiciosBussines extends CollectionsUtils
         try 
         {
             Collection<Servicios> coleccion;
-            coleccion= null;
+            coleccion = new ArrayList<Servicios>();
             ServiciosDao DaoServicio;
             DaoServicio = new ServiciosDao();
-            coleccion = new ArrayList<>();
-            
+
             coleccion = DaoServicio.consultaServicios();
             
             if(isValidCollection(coleccion))

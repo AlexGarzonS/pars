@@ -4,7 +4,7 @@
  */
 package presentacion.logica;
 
-import ControlErrores.CollectionsUtils;
+import ControlErrores.ControlErrores;
 import bussines.Servicios.ServiciosBussines;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,10 +28,10 @@ public class ServiciosVista {
         collectionServices = null;
         model = null;
         try {
-            CollectionsUtils utils;
+            ControlErrores utils;
             ServiciosBussines service;
 
-            utils = new CollectionsUtils();
+            utils = new ControlErrores();
             service = new ServiciosBussines();
             collectionServices = new ArrayList<>();
 
@@ -61,6 +61,23 @@ public class ServiciosVista {
             System.out.println("ServiciosVista::Listaservicios " + "No es posible realizar consulta " + e.getMessage());
         }
         return model;
+    }
+    
+    public void insertarServicio(Servicios a_servicio)
+    {
+        try 
+        {
+         ServiciosBussines service;
+         service = new ServiciosBussines();
+         
+         if(a_servicio != null)
+         {
+             service.insertarServicio(a_servicio);
+         }
+                  
+        } catch (Exception e) {
+            System.out.println("ServiciosVista::insertarServicio " + "No insertar nuevo registro " + e.getMessage());
+        }
     }
 
 }

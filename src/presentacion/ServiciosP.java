@@ -4,20 +4,25 @@
  */
 package presentacion;
 
+import ControlErrores.ControlErrores;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.Servicios;
 import presentacion.logica.ServiciosVista;
-
 
 /**
  *
  * @author Dev
  */
-public class Servicios extends javax.swing.JPanel {
+public class ServiciosP extends javax.swing.JPanel {
 
     /**
      * Creates new form Principal
      */
-    public Servicios() {
+    public ServiciosP() {
         initComponents();
         llenarTablaServicios();
     }
@@ -44,9 +49,9 @@ public class Servicios extends javax.swing.JPanel {
         jLabeldescripcion = new javax.swing.JLabel();
         jScrollPanedescripcion = new javax.swing.JScrollPane();
         jTextAreadescripcion = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonInsert = new javax.swing.JButton();
+        jButtonUpdate = new javax.swing.JButton();
+        jButtonDelete = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(910, 430));
         setPreferredSize(new java.awt.Dimension(910, 430));
@@ -90,17 +95,28 @@ public class Servicios extends javax.swing.JPanel {
 
         jLabelvalor.setText("Valor servicio");
 
+        jTextFieldvalor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldvalorKeyTyped(evt);
+            }
+        });
+
         jLabeldescripcion.setText("Descripción servicio");
 
         jTextAreadescripcion.setColumns(20);
         jTextAreadescripcion.setRows(5);
         jScrollPanedescripcion.setViewportView(jTextAreadescripcion);
 
-        jButton1.setText("jButton1");
+        jButtonInsert.setText("Insertar");
+        jButtonInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInsertActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("jButton2");
+        jButtonUpdate.setText("Actualizar");
 
-        jButton3.setText("jButton3");
+        jButtonDelete.setText("Eliminar");
 
         javax.swing.GroupLayout jPanelformLayout = new javax.swing.GroupLayout(jPanelform);
         jPanelform.setLayout(jPanelformLayout);
@@ -108,24 +124,30 @@ public class Servicios extends javax.swing.JPanel {
             jPanelformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelformLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabelnombre)
-                    .addComponent(jTextFieldnombre)
-                    .addComponent(jLabelvalor)
-                    .addComponent(jTextFieldvalor, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
                 .addGroup(jPanelformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelformLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabeldescripcion))
+                        .addComponent(jLabelnombre, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                        .addGap(36, 36, 36))
+                    .addComponent(jTextFieldnombre)
                     .addGroup(jPanelformLayout.createSequentialGroup()
+                        .addComponent(jLabelvalor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(53, 53, 53))
+                    .addComponent(jTextFieldvalor))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelformLayout.createSequentialGroup()
+                        .addComponent(jScrollPanedescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPanedescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanelformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(jButtonUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanelformLayout.createSequentialGroup()
+                                .addComponent(jButtonInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 6, Short.MAX_VALUE))
+                            .addComponent(jButtonDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanelformLayout.createSequentialGroup()
+                        .addComponent(jLabeldescripcion)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanelformLayout.setVerticalGroup(
             jPanelformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,24 +155,27 @@ public class Servicios extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanelformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelnombre)
-                    .addComponent(jLabeldescripcion))
+                    .addComponent(jLabeldescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPanedescripcion)
                     .addGroup(jPanelformLayout.createSequentialGroup()
-                        .addComponent(jTextFieldnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabelvalor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldvalor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPanedescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelformLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                        .addGroup(jPanelformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelformLayout.createSequentialGroup()
+                                .addComponent(jTextFieldnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabelvalor)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldvalor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelformLayout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(jButtonInsert)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonUpdate)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonDelete)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(11, 11, 11))
         );
 
         javax.swing.GroupLayout jPanelbackprincipalLayout = new javax.swing.GroupLayout(jPanelbackprincipal);
@@ -163,7 +188,7 @@ public class Servicios extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(jPanelbackprincipalLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jlabelHead, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                .addComponent(jlabelHead, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(466, 466, 466))
             .addGroup(jPanelbackprincipalLayout.createSequentialGroup()
                 .addContainerGap()
@@ -193,21 +218,76 @@ public class Servicios extends javax.swing.JPanel {
             .addComponent(jPanelbackprincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertActionPerformed
+        ControlErrores errores;
+        Servicios servicio;
+        
+        errores = new ControlErrores();
+        servicio = new Servicios();
+        
+        if (errores.isValidString(jTextFieldvalor.getText()) && errores.isValidString(jTextFieldnombre.getText()) && errores.isValidString(jTextAreadescripcion.getText())) {
+            double valor;
+            ServiciosVista vista;
+            
+            valor = Double.parseDouble(jTextFieldvalor.getText());
+            vista = new ServiciosVista();
+            
+            servicio.setDescripcion(jTextAreadescripcion.getText());
+            servicio.setNombre_servicio(jTextFieldnombre.getText());
+            servicio.setValor(valor);
+            
+            vista.insertarServicio(servicio);
+            
+            limpiarCampos();
+            llenarTablaServicios();
+            
+        } else {
+            String mensajeError;
+            
+            if (!errores.isValidString(jTextFieldnombre.getText())) {
+                mensajeError = "El nombre del servicio esta vacio";
+            } else if (!errores.isValidString(jTextFieldvalor.getText())) {
+                mensajeError = "El valor esta vacio";
+            } else if (!errores.isValidString(jTextAreadescripcion.getText())) {
+                mensajeError = "La descripcion esta vacia";
+            } else {
+                mensajeError = "todos los campos estan vacios";
+            }
+            
+            JOptionPane.showMessageDialog(null, mensajeError);
+        }
+    }//GEN-LAST:event_jButtonInsertActionPerformed
+
+    private void jTextFieldvalorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldvalorKeyTyped
+        char c;
+        c = evt.getKeyChar();
+        if (c < '0' || c > '9')
+            evt.consume();
+    }//GEN-LAST:event_jTextFieldvalorKeyTyped
     
-    private void llenarTablaServicios()
-    {
+    private void llenarTablaServicios() {
         ServiciosVista vista;
         vista = new ServiciosVista();
         DefaultTableModel modelo;
-        modelo =(DefaultTableModel) tablaServicios.getModel();
+        modelo = (DefaultTableModel) tablaServicios.getModel();
         modelo = vista.Listaservicios();
         tablaServicios.setModel(modelo);
     }
+    
+    private void limpiarCampos ()
+    {
+        jTextFieldnombre.setText("");
+        jTextFieldvalor.setText("");
+        jTextAreadescripcion.setText("");
+        
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonDelete;
+    private javax.swing.JButton jButtonInsert;
+    private javax.swing.JButton jButtonUpdate;
     private javax.swing.JLabel jLabeldescripcion;
     private javax.swing.JLabel jLabelnombre;
     private javax.swing.JLabel jLabelvalor;

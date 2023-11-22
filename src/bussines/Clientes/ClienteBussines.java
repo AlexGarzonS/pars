@@ -4,7 +4,7 @@
  */
 package bussines.Clientes;
 
-import ControlErrores.CollectionsUtils;
+import ControlErrores.ControlErrores;
 import dao.Clientes.ClientesDao;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import modelo.Clientes;
  *
  * @author Dev
  */
-public class ClienteBussines extends CollectionsUtils{
+public class ClienteBussines extends ControlErrores{
     
     
     public Collection<Clientes> traerListaClientes()

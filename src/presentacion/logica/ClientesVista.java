@@ -4,7 +4,7 @@
  */
 package presentacion.logica;
 
-import ControlErrores.CollectionsUtils;
+import ControlErrores.ControlErrores;
 import bussines.Clientes.ClienteBussines;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,10 +27,10 @@ public class ClientesVista
         collectionClientes = null;
         try 
         {
-            CollectionsUtils utils;
+            ControlErrores utils;
             ClienteBussines client;
 
-            utils = new CollectionsUtils();
+            utils = new ControlErrores();
             client = new ClienteBussines();
             collectionClientes = new ArrayList<>();
 
