@@ -6,6 +6,8 @@ package presentacion;
 
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import presentacion.views.Eventos;
+import presentacion.views.ServiciosP;
 
 /**
  *

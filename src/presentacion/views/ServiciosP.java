@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package presentacion;
+package presentacion.views;
 
 import ControlErrores.ControlErrores;
 import javax.swing.JOptionPane;
@@ -29,9 +29,9 @@ public class ServiciosP extends javax.swing.JPanel {
     }
 
     public ServiciosVista getVista() {
-        
+
         vista = new ServiciosVista();
-        
+
         return vista;
     }
 
@@ -39,10 +39,6 @@ public class ServiciosP extends javax.swing.JPanel {
         e = new ControlErrores();
         return e;
     }
-    
-    
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -256,17 +252,12 @@ public class ServiciosP extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertActionPerformed
-        jButtonUpdate.setEnabled(false);
-        jButtonDelete.setEnabled(false);
-
         Servicios servicio;
-
 
         servicio = new Servicios();
 
         if (getE().isValidString(jTextFieldvalor.getText()) && getE().isValidString(jTextFieldnombre.getText()) && getE().isValidString(jTextAreadescripcion.getText())) {
             double valor;
-
 
             valor = Double.parseDouble(jTextFieldvalor.getText());
 
@@ -364,7 +355,6 @@ public class ServiciosP extends javax.swing.JPanel {
 
             valor = Double.parseDouble(jTextFieldvalor.getText());
 
-
             servicio.setDescripcion(jTextAreadescripcion.getText());
             servicio.setNombre_servicio(jTextFieldnombre.getText());
             servicio.setValor(valor);
@@ -393,11 +383,10 @@ public class ServiciosP extends javax.swing.JPanel {
         if (idServicio == 0) {
             mensajeError = "Debe seleccionar un servicio para eliminar";
             JOptionPane.showMessageDialog(null, mensajeError);
-        }else
-        {
-            
+        } else {
+            JOptionPane.showMessageDialog(null, "esta deshabilidata por el momento");
         }
-        
+
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void llenarTablaServicios() {
