@@ -79,5 +79,22 @@ public class ServiciosVista {
             System.out.println("ServiciosVista::insertarServicio " + "No insertar nuevo registro " + e.getMessage());
         }
     }
+    
+    public void actulizarServicio(Servicios a_servicio)
+    {
+        try 
+        {
+         ServiciosBussines service;
+         service = new ServiciosBussines();
+         
+         if(a_servicio != null)
+         {
+             service.actualizarServicio(a_servicio);
+         }
+                  
+        } catch (Exception e) {
+            System.out.println("ServiciosVista::actulizarServicio " + "No pudo realizar actualización del servicio " + e.getMessage());
+        }
+    }
 
 }

@@ -37,6 +37,27 @@ public class ControlErrores {
 
         return booleanReturn;
     }
+
+    public boolean compareDoble(double a, double b) {
+        boolean booleanReturn;
+        booleanReturn = false;
+
+        if (Double.compare(a, b) > 0) {
+            booleanReturn = true;
+        }
+
+        return booleanReturn;
+    }
     
+    public boolean compareString(String a, String b) {
+        boolean booleanReturn;
+        booleanReturn = false;
+
+        if (!a.equalsIgnoreCase(b)) {
+            booleanReturn = true;
+        }
+
+        return booleanReturn;
+    }
 
 }

@@ -40,7 +40,6 @@ public class Dash extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1060, 570));
-        setPreferredSize(new java.awt.Dimension(1060, 670));
 
         panelBackgrond.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -89,11 +88,11 @@ public class Dash extends javax.swing.JFrame {
             .addGroup(jPanelverticalLayout.createSequentialGroup()
                 .addGap(183, 183, 183)
                 .addComponent(jButtonPrincipal)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonEventos)
-                .addGap(18, 18, 18)
+                .addGap(11, 11, 11)
                 .addComponent(jButtonServicios)
-                .addContainerGap(306, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonEventos)
+                .addContainerGap(348, Short.MAX_VALUE))
         );
 
         jPanelhorizontal.setBackground(new java.awt.Color(0, 102, 255));
@@ -117,7 +116,7 @@ public class Dash extends javax.swing.JFrame {
         jpanelContenido.setLayout(jpanelContenidoLayout);
         jpanelContenidoLayout.setHorizontalGroup(
             jpanelContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 910, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jpanelContenidoLayout.setVerticalGroup(
             jpanelContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,9 +132,8 @@ public class Dash extends javax.swing.JFrame {
                 .addGroup(panelBackgrondLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelhorizontal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelBackgrondLayout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jpanelContenido, javax.swing.GroupLayout.DEFAULT_SIZE, 910, Short.MAX_VALUE)
-                        .addGap(12, 12, 12))))
+                        .addGap(6, 6, 6)
+                        .addComponent(jpanelContenido, javax.swing.GroupLayout.DEFAULT_SIZE, 924, Short.MAX_VALUE))))
         );
         panelBackgrondLayout.setVerticalGroup(
             panelBackgrondLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,8 +141,8 @@ public class Dash extends javax.swing.JFrame {
             .addGroup(panelBackgrondLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(jPanelhorizontal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(jpanelContenido, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpanelContenido, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -4,6 +4,7 @@
  */
 package dao.Servicios;
 
+import ControlErrores.ControlErrores;
 import connection.ConnectionDb;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,10 +19,11 @@ import modelo.Servicios;
  */
 public class ServiciosDao extends ConnectionDb {
 
-    private static final String cs_CONSULTASERVICIOS = "Select * from servicios";
+    private static final String cs_CONSULTASERVICIOS = "Select * from servicios ";
 
-    private static final String cs_INSERTAR_SERVICIO = "insert into servicios (nombre_Servicio,descripcion,valor)"
+    private static final String cs_INSERTAR_SERVICIO = "insert into servicios (nombre_Servicio,descripcion,valor) "
             + "values (?,?,?)";
+    private static final String cs_ACTUALIZAR_SERVICIO = "UPDATE servicios set ";
 
     public Collection<Servicios> consultaServicios()
             throws SQLException {
@@ -34,9 +36,9 @@ public class ServiciosDao extends ConnectionDb {
         rs = null;
 
         try {
+            coleccionRetorno = new ArrayList<>();
             ps = conectar().prepareStatement(cs_CONSULTASERVICIOS);
             rs = ps.executeQuery();
-            coleccionRetorno = new ArrayList<>();
 
             while (rs.next()) {
                 coleccionRetorno.add(getDataServices(rs));
@@ -50,6 +52,41 @@ public class ServiciosDao extends ConnectionDb {
         }
 
         return coleccionRetorno;
+    }
+
+    public Servicios buscarValorServicio(double a_id)
+            throws SQLException {
+        Servicios retorno;
+        PreparedStatement ps;
+        ResultSet rs;
+
+        retorno = new Servicios();
+        ps = null;
+        rs = null;
+
+        try {
+            if (a_id > 0) {
+                StringBuilder query;
+                query = new StringBuilder(cs_CONSULTASERVICIOS);
+
+                query.append("where servicioID =");
+                query.append(a_id);
+
+                ps = conectar().prepareStatement(query.toString());
+                rs = ps.executeQuery();
+
+                if (rs.next()) {
+                    retorno = getDataServices(rs);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("ServiciosDao::buscarValorServicio " + e.getMessage());
+            CerraConector();
+        } finally {
+            closeRs(rs);
+            closePs(ps);
+        }
+        return retorno;
     }
 
     public void insertServicio(Servicios a_servicio)
@@ -68,11 +105,37 @@ public class ServiciosDao extends ConnectionDb {
                 ps.executeUpdate();
             }
         } catch (SQLException e) {
-            System.out.println("ServiciosDao::consultaServicios " + e.getMessage());
+            System.out.println("ServiciosDao::insertServicio " + e.getMessage());
             CerraConector();
         } finally {
             closePs(ps);
 
+        }
+
+    }
+
+    public void UpdateServicio(String a_script)
+            throws SQLException {
+        PreparedStatement ps;
+        ps = null;
+
+        try {
+            ControlErrores e;
+            e = new ControlErrores();
+
+            if (e.isValidString(a_script)) {
+                StringBuilder query;
+                query = new StringBuilder(cs_ACTUALIZAR_SERVICIO);
+                query.append(a_script);
+
+                ps = conectar().prepareStatement(query.toString());
+                ps.executeUpdate();
+            }
+        } catch (SQLException e) {
+            System.out.println("ServiciosDao::UpdateServicio " + e.getMessage());
+            CerraConector();
+        } finally {
+            closePs(ps);
         }
 
     }
