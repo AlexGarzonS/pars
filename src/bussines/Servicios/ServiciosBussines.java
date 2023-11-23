@@ -9,7 +9,7 @@ import dao.Servicios.ServiciosDao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
-import modelo.Servicios;
+import modelo.Servicios.Servicios;
 
 /**
  *

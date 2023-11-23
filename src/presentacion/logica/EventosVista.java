@@ -5,14 +5,18 @@
 package presentacion.logica;
 
 import ControlErrores.ControlErrores;
+import bussines.Eventos.EventosBusiness;
 import bussines.Servicios.ServiciosBussines;
-import com.sun.xml.internal.ws.util.StringUtils;
 import java.awt.Choice;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import modelo.Servicios;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JComboBox;
+import modelo.Servicios.Servicios;
 
 /**
  *
@@ -21,10 +25,49 @@ import modelo.Servicios;
 public class EventosVista {
 
     private ControlErrores e;
+    private ServiciosBussines service;
+    private EventosBusiness event;
 
     private ControlErrores getE() {
         e = new ControlErrores();
         return e;
+    }
+
+    private ServiciosBussines getService() {
+        service = new ServiciosBussines();
+        return service;
+    }
+
+    private EventosBusiness getEvent() {
+        event = new EventosBusiness();
+        return event;
+    }
+
+    public JComboBox<String> llenarListaEstados() {
+        JComboBox<String> returnser;
+
+        returnser = new JComboBox<>();
+
+        try {
+            Collection<String> colecionservicios;
+
+            colecionservicios = new ArrayList<>();
+
+            returnser.setSize(100, 40);
+            returnser.addItem("Seleccion");
+
+            colecionservicios = getEvent().traerEstadoEvento();
+
+            if (getE().isValidCollection(colecionservicios)) {
+                for (String iterador : colecionservicios) {
+                    returnser.addItem(iterador);
+                }
+            }
+
+        } catch (Exception ex) {
+            System.out.println("EventosVista::llenarListaEstados " + ex.getMessage());
+        }
+        return returnser;
     }
 
     public Choice llenarListaServicios() {
@@ -34,15 +77,13 @@ public class EventosVista {
 
         try {
             Collection<Servicios> colecionservicios;
-            ServiciosBussines service;
 
             colecionservicios = new ArrayList<Servicios>();
-            service = new ServiciosBussines();
 
             returnser.setSize(209, 320);
             returnser.addItem("0 - Seleccion");
 
-            colecionservicios = service.traerListaServicios();
+            colecionservicios = getService().traerListaServicios();
 
             if (getE().isValidCollection(colecionservicios)) {
                 for (Servicios iterador : colecionservicios) {
@@ -62,12 +103,10 @@ public class EventosVista {
         obj = null;
         try {
             Collection<Servicios> colecionservicios;
-            ServiciosBussines service;
 
             colecionservicios = new ArrayList<Servicios>();
-            service = new ServiciosBussines();
 
-            colecionservicios = service.traerListaServicios();
+            colecionservicios = getService().traerListaServicios();
 
             if (getE().isValidCollection(colecionservicios)) {
 
@@ -106,16 +145,14 @@ public class EventosVista {
         obj = 0;
         try {
             Collection<Servicios> colecionservicios;
-            ServiciosBussines service;
             int seleccioni;
             String[] parts;
             seleccioni = 0;
             colecionservicios = new ArrayList<Servicios>();
-            service = new ServiciosBussines();
 
             parts = seleccion.split("-");
             seleccioni = Integer.parseInt(parts[0].trim());
-            colecionservicios = service.traerListaServicios();
+            colecionservicios = getService().traerListaServicios();
 
             if (getE().isValidCollection(colecionservicios)) {
                 for (Servicios iterador : colecionservicios) {
@@ -131,4 +168,44 @@ public class EventosVista {
         }
         return obj;
     }
+
+    public void insertarEvento(String doc, String tdoc, Date fechaCaptura, String nombreEvento, String estadoEvento, String descripcion, String servicios, String subtotal,
+            double total) {
+        try {
+            Date fecha;
+            double valorTotalSub;
+            double valorConvert;
+            StringBuilder output;
+            SimpleDateFormat formato;
+            String fechaFormateada;
+
+            Pattern pattern = Pattern.compile("\\d+");
+            Matcher matcher = pattern.matcher(servicios);
+            valorTotalSub = 0;
+            output = new StringBuilder();
+            formato = new SimpleDateFormat("yyyy-MM-dd");
+            fechaFormateada = formato.format(fechaCaptura);
+            fecha = formato.parse(fechaFormateada);
+            
+            while (matcher.find()) {
+                output.append(matcher.group()).append(",");
+            }
+
+            if (output.length() > 0) {
+                output.deleteCharAt(output.length() - 1);
+            }
+            if (estadoEvento.equalsIgnoreCase("pendiente")) {
+                valorConvert = Double.valueOf(subtotal);
+                valorTotalSub = total - valorConvert;
+            }
+
+            getEvent().insertarEventoFactura(doc, tdoc, fecha, nombreEvento, estadoEvento, descripcion, output.toString(), valorTotalSub);
+
+        }catch(Exception ex)
+        {
+            System.out.println("EventosVista::insertarEvento " + ex.getMessage());
+        } 
+
+    }
+
 }

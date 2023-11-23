@@ -4,6 +4,7 @@
  */
 package connection;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -56,6 +57,12 @@ public class ConnectionDb {
     }
 
     public static void closePs(PreparedStatement ars_ps)
+            throws SQLException {
+        if (ars_ps != null) {
+            ars_ps.close();
+        }
+    }
+    public static void closeCall(CallableStatement ars_ps)
             throws SQLException {
         if (ars_ps != null) {
             ars_ps.close();

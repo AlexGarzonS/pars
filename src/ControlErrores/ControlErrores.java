@@ -4,6 +4,7 @@
  */
 package ControlErrores;
 
+import java.sql.Date;
 import java.util.Collection;
 
 /**
@@ -58,6 +59,17 @@ public class ControlErrores {
         }
 
         return booleanReturn;
+    }
+    
+    public java.sql.Date convertirFechaUtilASQL(java.util.Date a)
+    {
+        java.sql.Date fechaSql;
+        long mili;
+        
+        mili = a.getTime();
+        fechaSql = new java.sql.Date(mili);
+        
+        return fechaSql;
     }
 
 }

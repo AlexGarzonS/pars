@@ -5,8 +5,15 @@
 package presentacion.views;
 
 import ControlErrores.ControlErrores;
+import java.awt.BorderLayout;
 import java.awt.Choice;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import presentacion.logica.EventosVista;
 
@@ -14,16 +21,19 @@ import presentacion.logica.EventosVista;
  *
  * @author Dev
  */
-public class Eventos extends javax.swing.JPanel {
+public class Eventosp extends javax.swing.JPanel {
 
     private DefaultTableModel modelo;
     private double valorTotal;
     private ControlErrores e;
+    private EventosVista vista;
+    private Choice listaServicios;
+    private JComboBox<String> listaEstados;
+    private String objtabla;
 
-    public Eventos() {
+    public Eventosp() {
         initComponents();
-        llenarlistaservicios();
-        intModelo();
+        llenarTodo();
     }
 
     @SuppressWarnings("unchecked")
@@ -52,8 +62,10 @@ public class Eventos extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreadescripcion = new javax.swing.JTextArea();
         jLabelestado = new javax.swing.JLabel();
-        jComboBox1estado = new javax.swing.JComboBox<>();
         jButtoninsertarEvento = new javax.swing.JButton();
+        jPanelcombo = new javax.swing.JPanel();
+        jLabelsubtotalñtitulo = new javax.swing.JLabel();
+        jTextFieldsubtotal = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(910, 430));
 
@@ -103,6 +115,8 @@ public class Eventos extends javax.swing.JPanel {
             jPanelchoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabelvalor.setBackground(new java.awt.Color(255, 255, 255));
         jLabelvalor.setFont(new java.awt.Font("Lucida Fax", 1, 36)); // NOI18N
@@ -185,9 +199,27 @@ public class Eventos extends javax.swing.JPanel {
 
         jLabelestado.setText("Estado factura");
 
-        jComboBox1estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jButtoninsertarEvento.setText("Crear evento");
+        jButtoninsertarEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtoninsertarEventoActionPerformed(evt);
+            }
+        });
+
+        jPanelcombo.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanelcomboLayout = new javax.swing.GroupLayout(jPanelcombo);
+        jPanelcombo.setLayout(jPanelcomboLayout);
+        jPanelcomboLayout.setHorizontalGroup(
+            jPanelcomboLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanelcomboLayout.setVerticalGroup(
+            jPanelcomboLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+
+        jLabelsubtotalñtitulo.setText("Subtotal");
 
         javax.swing.GroupLayout jPaneleventoLayout = new javax.swing.GroupLayout(jPanelevento);
         jPanelevento.setLayout(jPaneleventoLayout);
@@ -206,21 +238,29 @@ public class Eventos extends javax.swing.JPanel {
                         .addComponent(jScrollPane1)
                         .addContainerGap())
                     .addGroup(jPaneleventoLayout.createSequentialGroup()
-                        .addComponent(jLabelestado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(176, 176, 176))
-                    .addGroup(jPaneleventoLayout.createSequentialGroup()
                         .addGroup(jPaneleventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rSDateChooserfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addGroup(jPaneleventoLayout.createSequentialGroup()
                                 .addComponent(jLabel2fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(86, 86, 86))
-                            .addComponent(jTextFieldnombreevento)
-                            .addComponent(jComboBox1estado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(161, 161, 161))))
+                            .addComponent(jTextFieldnombreevento))
+                        .addGap(161, 161, 161))
+                    .addGroup(jPaneleventoLayout.createSequentialGroup()
+                        .addComponent(jLabelestado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(273, 273, 273))))
             .addGroup(jPaneleventoLayout.createSequentialGroup()
                 .addGap(152, 152, 152)
                 .addComponent(jButtoninsertarEvento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(155, 155, 155))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPaneleventoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPaneleventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPaneleventoLayout.createSequentialGroup()
+                        .addComponent(jLabelsubtotalñtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTextFieldsubtotal, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelcombo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(161, 161, 161))
         );
         jPaneleventoLayout.setVerticalGroup(
             jPaneleventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,15 +275,19 @@ public class Eventos extends javax.swing.JPanel {
                 .addComponent(rSDateChooserfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jLabelestado)
-                .addGap(8, 8, 8)
-                .addComponent(jComboBox1estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelcombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelsubtotalñtitulo)
+                .addGap(4, 4, 4)
+                .addComponent(jTextFieldsubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1descripcion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtoninsertarEvento)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelformLayout = new javax.swing.GroupLayout(jPanelform);
@@ -312,29 +356,46 @@ public class Eventos extends javax.swing.JPanel {
         int selectedIndex;
         String selectedValue;
         Object[] obj;
+        boolean isExiste;
 
         selectedIndex = listaServicios.getSelectedIndex();
-        selectedValue = listaServicios.getItem(selectedIndex);
 
-        if (!selectedValue.contains("0 ")) {
+        if (selectedIndex > -1) {
+            selectedValue = listaServicios.getItem(selectedIndex);
+            isExiste = false;
 
-            double valorV;
-
-            obj = getvista().llenartablaServicios(selectedValue);
-            valorV = getvista().valorTotalServicios(selectedValue);
-
-            if (obj != null) {
-                modelo.addRow(obj);
+            if (getE().isValidString(objtabla)) {
+                if (objtabla.contains(selectedValue)) {
+                    isExiste = true;
+                }
             }
 
-            jTable1servicios.setModel(modelo);
+            if (!isExiste) {
+                if (!selectedValue.contains("0 ")) {
 
-            if (valorTotal == 0) {
-                valorTotal = valorV;
+                    double valorV;
+
+                    obj = getvista().llenartablaServicios(selectedValue);
+                    valorV = getvista().valorTotalServicios(selectedValue);
+
+                    if (obj != null) {
+                        modelo.addRow(obj);
+                        if (!getE().isValidString(objtabla)) {
+                            objtabla = selectedValue;
+                        } else {
+                            objtabla += ", " + selectedValue;
+                        }
+                    }
+
+                    sumarValores(valorV);
+                    jTable1servicios.setModel(modelo);
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Debe ser una opcion valida");
+                }
             } else {
-                valorTotal = valorTotal + valorV;
+                JOptionPane.showMessageDialog(null, "Debe agregar un unico servicio para el evento");
             }
-            jLabelvalor.setText(String.valueOf(valorTotal));
 
         } else {
             JOptionPane.showMessageDialog(null, "Debe ser una opcion valida");
@@ -363,6 +424,7 @@ public class Eventos extends javax.swing.JPanel {
                 );
 
                 if (opc[op].equalsIgnoreCase("SI")) {
+
                     double valorremovido;
                     int columnCount;
                     Object[] rowData;
@@ -380,29 +442,93 @@ public class Eventos extends javax.swing.JPanel {
                     valors = rowData[1].toString();
 
                     if (getE().isValidString(valors)) {
-                        double resultado;
-
-                        valorremovido = Double.parseDouble(valors);
-
-                        resultado = valorTotal - valorremovido;
-
-                        if (resultado == 0) {
-                            valorTotal = 0;
-                        } else {
-                            valorTotal = resultado;
-                        }
+                        valorremovido = Double.valueOf(valors);
+                        restarValores(valorremovido);
                     }
                     modelo.removeRow(in);
+                    eliminarServicioLista(rowData[0].toString());
 
-                    jLabelvalor.setText(String.valueOf(valorTotal));
                     listaServicios.select(0);
 
                 }
             }
         }
     }//GEN-LAST:event_jTable1serviciosMousePressed
-    private EventosVista vista;
-    private Choice listaServicios;
+
+    private void jButtoninsertarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtoninsertarEventoActionPerformed
+        boolean error;
+        int selectindex;
+        Date fechaCaptura;
+        String nombreEvento;
+        String estadoEvento;
+        String descripcion;
+        String servicios;
+        String subtotal;
+        String mensajeError;
+        String documento;
+        String tDoc;
+
+        error = false;
+        mensajeError = "";
+
+        selectindex = listaEstados.getSelectedIndex();
+
+        fechaCaptura = rSDateChooserfecha.getDatoFecha();
+        nombreEvento = jTextFieldnombreevento.getText();
+        estadoEvento = listaEstados.getItemAt(selectindex);
+        descripcion = jTextAreadescripcion.getText();
+        servicios = objtabla;
+        subtotal = jTextFieldsubtotal.getText();
+        documento = "0987654321";
+        tDoc = "CC";
+
+        if (!getE().isValidString(nombreEvento)) {
+            error = true;
+            mensajeError = "El nombre del evento no puede ser vacio o null";
+        }
+        if (!getE().isValidString(estadoEvento)) {
+            error = true;
+            mensajeError = "se debe seleccionar estado evento";
+        }
+        if (!getE().isValidString(descripcion)) {
+            error = true;
+            mensajeError = "se ingresar descripcion de evento";
+        }
+        if (!getE().isValidString(servicios)) {
+            error = true;
+            mensajeError = "Se debe seleccionar al menos un servicio";
+        }
+
+        if (fechaCaptura == null) {
+            error = true;
+            mensajeError = "Se ingresar fecha";
+        } else {
+            if (fechaCaptura.before(new Date())) {
+                error = true;
+                mensajeError = "la fecha no puede ser anterior a la fecha actual";
+            }
+
+            if (fechaCaptura.equals(new Date())) {
+                error = true;
+                mensajeError = "la fecha tiene que ser superior a la fecha actual";
+            }
+        }
+
+        if (estadoEvento.equalsIgnoreCase("pendiente")) {
+            if (!getE().isValidString(subtotal)) {
+                error = true;
+                mensajeError = "Se debe ingresar subtotal cuando se indica pendiente el estado";
+            }
+        }
+
+        if (error) {
+            JOptionPane.showMessageDialog(null, mensajeError);
+        } else {
+            
+            getvista().insertarEvento(documento, tDoc, fechaCaptura, nombreEvento, estadoEvento, descripcion, servicios, subtotal, valorTotal);
+            limpiarCampos();
+        }
+    }//GEN-LAST:event_jButtoninsertarEventoActionPerformed
 
     private EventosVista getvista() {
         vista = new EventosVista();
@@ -416,11 +542,19 @@ public class Eventos extends javax.swing.JPanel {
         jPanelchoice.add(listaServicios);
     }
 
+    private void llenarEstados() {
+        listaEstados = new JComboBox<>();
+        listaEstados = getvista().llenarListaEstados();
+        listaEstados.setSelectedItem(0);
+        jPanelcombo.add(listaEstados);
+    }
+
     private void intModelo() {
         valorTotal = 0;
         modelo = new DefaultTableModel();
         modelo.addColumn("NOMBRE");
         modelo.addColumn("VALOR");
+        jTable1servicios.repaint();
     }
 
     private ControlErrores getE() {
@@ -428,23 +562,106 @@ public class Eventos extends javax.swing.JPanel {
         return e;
     }
 
+    private void eliminarServicioLista(String nombreServicio) {
+        if (getE().isValidString(objtabla)) {
+            String cadena;
+            cadena = objtabla;
+
+            cadena = cadena.replaceAll("\\d+ - " + nombreServicio + "(, |$)", "");
+            cadena = cadena.replaceAll(",\\s*(?=,|$)", "");
+            objtabla = cadena;
+        }
+    }
+
+    private void sumarValores(double a) {
+        if (a > 0) {
+            String valorCadena;
+            double valort;
+            double val;
+
+            valorCadena = "";
+            valort = 0;
+            val = 0;
+
+            if (valorTotal == 0) {
+                valorTotal = a;
+                valorCadena = String.valueOf(valorTotal);
+            } else {
+
+                valort = valorTotal;
+                val = valort + a;
+                valorTotal = val;
+                valorCadena = String.valueOf(val);
+            }
+
+            jLabelvalor.setText(valorCadena);
+
+        }
+    }
+
+    private void restarValores(double a) {
+        if (a > 0) {
+            double valor;
+            double valorE;
+            double total;
+            String valorCadena;
+
+            valor = 0;
+            valorE = 0;
+            total = 0;
+            valorCadena = "";
+
+            if (valorTotal > 0) {
+
+                valor = valorTotal;
+                valorE = a;
+
+                total = valor - valorE;
+                valorTotal = total;
+                valorCadena = String.valueOf(total);
+
+            }
+            jLabelvalor.setText(valorCadena);
+        }
+    }
+
+    private void limpiarCampos() {
+        
+        showJpanel(jPanellistaservicios);
+    }
+    
+    private void showJpanel(JPanel p)
+    {
+        jPanelbackprincipal.removeAll();
+        jPanelbackprincipal.add(p);
+        jPanelbackprincipal.revalidate();
+        jPanelbackprincipal.repaint();
+    }
+
+    private void llenarTodo() {
+        llenarlistaservicios();
+        llenarEstados();
+        intModelo();
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonagregarservicio;
     private javax.swing.JButton jButtoninsertarEvento;
-    private javax.swing.JComboBox<String> jComboBox1estado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel1descripcion;
     private javax.swing.JLabel jLabel1nombre;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel2fecha;
     private javax.swing.JLabel jLabelestado;
+    private javax.swing.JLabel jLabelsubtotalñtitulo;
     private javax.swing.JLabel jLabeltitulovalor;
     private javax.swing.JLabel jLabelvalor;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelback;
     private javax.swing.JPanel jPanelbackprincipal;
     private javax.swing.JPanel jPanelchoice;
+    private javax.swing.JPanel jPanelcombo;
     private javax.swing.JPanel jPanelevento;
     private javax.swing.JPanel jPanelform;
     private javax.swing.JPanel jPanellistaservicios;
@@ -453,6 +670,7 @@ public class Eventos extends javax.swing.JPanel {
     private javax.swing.JTable jTable1servicios;
     private javax.swing.JTextArea jTextAreadescripcion;
     private javax.swing.JTextField jTextFieldnombreevento;
+    private javax.swing.JTextField jTextFieldsubtotal;
     private rojeru_san.componentes.RSDateChooser rSDateChooserfecha;
     // End of variables declaration//GEN-END:variables
 }

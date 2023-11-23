@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
-import modelo.Servicios;
+import modelo.Servicios.Servicios;
 
 /**
  *
@@ -45,10 +45,10 @@ public class ServiciosDao extends ConnectionDb {
             }
         } catch (SQLException e) {
             System.out.println("ServiciosDao::consultaServicios " + e.getMessage());
-            CerraConector();
         } finally {
             closeRs(rs);
             closePs(ps);
+            CerraConector();
         }
 
         return coleccionRetorno;
@@ -81,10 +81,10 @@ public class ServiciosDao extends ConnectionDb {
             }
         } catch (SQLException e) {
             System.out.println("ServiciosDao::buscarValorServicio " + e.getMessage());
-            CerraConector();
         } finally {
             closeRs(rs);
             closePs(ps);
+            CerraConector();
         }
         return retorno;
     }
@@ -106,9 +106,9 @@ public class ServiciosDao extends ConnectionDb {
             }
         } catch (SQLException e) {
             System.out.println("ServiciosDao::insertServicio " + e.getMessage());
-            CerraConector();
         } finally {
             closePs(ps);
+            CerraConector();
 
         }
 
@@ -133,8 +133,8 @@ public class ServiciosDao extends ConnectionDb {
             }
         } catch (SQLException e) {
             System.out.println("ServiciosDao::UpdateServicio " + e.getMessage());
-            CerraConector();
         } finally {
+            CerraConector();
             closePs(ps);
         }
 

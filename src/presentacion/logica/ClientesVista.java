@@ -8,7 +8,7 @@ import ControlErrores.ControlErrores;
 import bussines.Clientes.ClienteBussines;
 import java.util.ArrayList;
 import java.util.Collection;
-import modelo.Clientes;
+import modelo.Clientes.Clientes;
 
 
 /**

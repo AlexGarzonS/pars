@@ -9,7 +9,7 @@ import dao.Clientes.ClientesDao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
-import modelo.Clientes;
+import modelo.Clientes.Clientes;
 
 /**
  *

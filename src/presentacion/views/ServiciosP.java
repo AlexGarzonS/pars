@@ -7,7 +7,7 @@ package presentacion.views;
 import ControlErrores.ControlErrores;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.Servicios;
+import modelo.Servicios.Servicios;
 import presentacion.logica.ServiciosVista;
 
 /**
@@ -385,6 +385,8 @@ public class ServiciosP extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, mensajeError);
         } else {
             JOptionPane.showMessageDialog(null, "esta deshabilidata por el momento");
+            limpiarCampos();
+            llenarTablaServicios();
         }
 
     }//GEN-LAST:event_jButtonDeleteActionPerformed

@@ -6,7 +6,7 @@ package presentacion;
 
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
-import presentacion.views.Eventos;
+import presentacion.views.Eventosp;
 import presentacion.views.ServiciosP;
 
 /**
@@ -166,7 +166,7 @@ public class Dash extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonPrincipalActionPerformed
 
     private void jButtonEventosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEventosActionPerformed
-        showJpanel(new Eventos());
+        showJpanel(new Eventosp());
     }//GEN-LAST:event_jButtonEventosActionPerformed
 
     private void jButtonServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonServiciosActionPerformed

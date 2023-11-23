@@ -9,7 +9,7 @@ import bussines.Servicios.ServiciosBussines;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.swing.table.DefaultTableModel;
-import modelo.Servicios;
+import modelo.Servicios.Servicios;
 
 /**
  *
