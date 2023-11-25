@@ -6,6 +6,8 @@ package dao.Servicios;
 
 import ControlErrores.ControlErrores;
 import connection.ConnectionDb;
+import static connection.ConnectionDb.closeCall;
+import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,8 +23,7 @@ public class ServiciosDao extends ConnectionDb {
 
     private static final String cs_CONSULTASERVICIOS = "Select * from servicios ";
 
-    private static final String cs_INSERTAR_SERVICIO = "insert into servicios (nombre_Servicio,descripcion,valor) "
-            + "values (?,?,?)";
+    private static final String cs_INSERTAR_SERVICIO = "{call sp_InsertarServicio(?,?,?)}";
     private static final String cs_ACTUALIZAR_SERVICIO = "UPDATE servicios set ";
 
     public Collection<Servicios> consultaServicios()
@@ -91,25 +92,30 @@ public class ServiciosDao extends ConnectionDb {
 
     public void insertServicio(Servicios a_servicio)
             throws SQLException {
-        PreparedStatement ps;
-        ps = null;
+        CallableStatement statement;
+        statement = null;
 
         try {
-            int contador;
-            contador = 1;
-            if (a_servicio != null) {
-                ps = conectar().prepareStatement(cs_INSERTAR_SERVICIO);
-                ps.setString(contador++, a_servicio.getNombre_servicio());
-                ps.setString(contador++, a_servicio.getDescripcion());
-                ps.setDouble(contador++, a_servicio.getValor());
-                ps.executeUpdate();
-            }
-        } catch (SQLException e) {
-            System.out.println("ServiciosDao::insertServicio " + e.getMessage());
-        } finally {
-            closePs(ps);
-            CerraConector();
 
+            if (a_servicio != null) 
+            {
+                int in;
+                in = 1;
+                
+                statement = conectar().prepareCall(cs_INSERTAR_SERVICIO);
+                
+                statement.setString(in++, a_servicio.getNombre_servicio());
+                statement.setString(in++, a_servicio.getDescripcion());
+                statement.setDouble(in++, a_servicio.getValor());
+
+                statement.execute();
+            }
+
+        } catch (SQLException e) {
+            System.out.println("EventosDao::eliminarEventoFactura " + e.getMessage());
+        } finally {
+            closeCall(statement);
+            CerraConector();
         }
 
     }

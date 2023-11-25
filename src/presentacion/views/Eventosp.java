@@ -5,15 +5,11 @@
 package presentacion.views;
 
 import ControlErrores.ControlErrores;
-import java.awt.BorderLayout;
+
 import java.awt.Choice;
-import java.text.ParseException;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import presentacion.logica.EventosVista;
 
@@ -23,13 +19,13 @@ import presentacion.logica.EventosVista;
  */
 public class Eventosp extends javax.swing.JPanel {
 
-    private DefaultTableModel modelo;
+    private DefaultTableModel modeloTabla;
     private double valorTotal;
     private ControlErrores e;
-    private EventosVista vista;
+    private EventosVista LogicaVista;
     private Choice listaServicios;
-    private JComboBox<String> listaEstados;
-    private String objtabla;
+    private JComboBox<String> listaEstadosEvento;
+    private String ServiciosListados;
 
     public Eventosp() {
         initComponents();
@@ -50,7 +46,7 @@ public class Eventosp extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1servicios = new javax.swing.JTable();
         jPanelchoice = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel1Valor = new javax.swing.JPanel();
         jLabelvalor = new javax.swing.JLabel();
         jLabeltitulovalor = new javax.swing.JLabel();
         jPanelevento = new javax.swing.JPanel();
@@ -116,7 +112,7 @@ public class Eventosp extends javax.swing.JPanel {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1Valor.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabelvalor.setBackground(new java.awt.Color(255, 255, 255));
         jLabelvalor.setFont(new java.awt.Font("Lucida Fax", 1, 36)); // NOI18N
@@ -125,22 +121,22 @@ public class Eventosp extends javax.swing.JPanel {
 
         jLabeltitulovalor.setText("Valor total");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1ValorLayout = new javax.swing.GroupLayout(jPanel1Valor);
+        jPanel1Valor.setLayout(jPanel1ValorLayout);
+        jPanel1ValorLayout.setHorizontalGroup(
+            jPanel1ValorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1ValorLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(jLabeltitulovalor, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelvalor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jPanel1ValorLayout.setVerticalGroup(
+            jPanel1ValorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1ValorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1ValorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelvalor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabeltitulovalor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -164,7 +160,7 @@ public class Eventosp extends javax.swing.JPanel {
                     .addGroup(jPanellistaserviciosLayout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(117, 117, 117))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1Valor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanellistaserviciosLayout.setVerticalGroup(
@@ -181,7 +177,7 @@ public class Eventosp extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1Valor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(14, 14, 14))
         );
 
@@ -255,9 +251,7 @@ public class Eventosp extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPaneleventoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPaneleventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPaneleventoLayout.createSequentialGroup()
-                        .addComponent(jLabelsubtotalñtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabelsubtotalñtitulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldsubtotal, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelcombo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(161, 161, 161))
@@ -332,11 +326,11 @@ public class Eventosp extends javax.swing.JPanel {
         jPanelbackprincipal.setLayout(jPanelbackprincipalLayout);
         jPanelbackprincipalLayout.setHorizontalGroup(
             jPanelbackprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelback, javax.swing.GroupLayout.DEFAULT_SIZE, 804, Short.MAX_VALUE)
+            .addComponent(jPanelback, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanelbackprincipalLayout.setVerticalGroup(
             jPanelbackprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelback, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+            .addComponent(jPanelback, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -364,8 +358,8 @@ public class Eventosp extends javax.swing.JPanel {
             selectedValue = listaServicios.getItem(selectedIndex);
             isExiste = false;
 
-            if (getE().isValidString(objtabla)) {
-                if (objtabla.contains(selectedValue)) {
+            if (getE().isValidString(ServiciosListados)) {
+                if (ServiciosListados.contains(selectedValue)) {
                     isExiste = true;
                 }
             }
@@ -379,19 +373,20 @@ public class Eventosp extends javax.swing.JPanel {
                     valorV = getvista().valorTotalServicios(selectedValue);
 
                     if (obj != null) {
-                        modelo.addRow(obj);
-                        if (!getE().isValidString(objtabla)) {
-                            objtabla = selectedValue;
+                        modeloTabla.addRow(obj);
+                        if (!getE().isValidString(ServiciosListados)) {
+                            ServiciosListados = selectedValue;
                         } else {
-                            objtabla += ", " + selectedValue;
+                            ServiciosListados += ", " + selectedValue;
                         }
                     }
 
                     sumarValores(valorV);
-                    jTable1servicios.setModel(modelo);
+                    jTable1servicios.setModel(modeloTabla);
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Debe ser una opcion valida");
+
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Debe agregar un unico servicio para el evento");
@@ -445,7 +440,7 @@ public class Eventosp extends javax.swing.JPanel {
                         valorremovido = Double.valueOf(valors);
                         restarValores(valorremovido);
                     }
-                    modelo.removeRow(in);
+                    modeloTabla.removeRow(in);
                     eliminarServicioLista(rowData[0].toString());
 
                     listaServicios.select(0);
@@ -471,13 +466,13 @@ public class Eventosp extends javax.swing.JPanel {
         error = false;
         mensajeError = "";
 
-        selectindex = listaEstados.getSelectedIndex();
+        selectindex = listaEstadosEvento.getSelectedIndex();
 
         fechaCaptura = rSDateChooserfecha.getDatoFecha();
         nombreEvento = jTextFieldnombreevento.getText();
-        estadoEvento = listaEstados.getItemAt(selectindex);
+        estadoEvento = listaEstadosEvento.getItemAt(selectindex);
         descripcion = jTextAreadescripcion.getText();
-        servicios = objtabla;
+        servicios = ServiciosListados;
         subtotal = jTextFieldsubtotal.getText();
         documento = "0987654321";
         tDoc = "CC";
@@ -524,15 +519,24 @@ public class Eventosp extends javax.swing.JPanel {
         if (error) {
             JOptionPane.showMessageDialog(null, mensajeError);
         } else {
+            int idEvento;
+            idEvento = 0;
             
-            getvista().insertarEvento(documento, tDoc, fechaCaptura, nombreEvento, estadoEvento, descripcion, servicios, subtotal, valorTotal);
+            idEvento = getvista().insertarEvento(documento, tDoc, fechaCaptura, nombreEvento, estadoEvento, descripcion, servicios, subtotal, valorTotal);
+            if(idEvento > 0)
+            {
+                JOptionPane.showMessageDialog(null, "El evento a sido creado correctamente con ID: "+idEvento);
+            }else
+            {
+                JOptionPane.showMessageDialog(null, "El evento no a sido creado correctamente");
+            }
             limpiarCampos();
         }
     }//GEN-LAST:event_jButtoninsertarEventoActionPerformed
 
     private EventosVista getvista() {
-        vista = new EventosVista();
-        return vista;
+        LogicaVista = new EventosVista();
+        return LogicaVista;
     }
 
     private void llenarlistaservicios() {
@@ -543,17 +547,17 @@ public class Eventosp extends javax.swing.JPanel {
     }
 
     private void llenarEstados() {
-        listaEstados = new JComboBox<>();
-        listaEstados = getvista().llenarListaEstados();
-        listaEstados.setSelectedItem(0);
-        jPanelcombo.add(listaEstados);
+        listaEstadosEvento = new JComboBox<>();
+        listaEstadosEvento = getvista().llenarListaEstados();
+        listaEstadosEvento.setSelectedItem(0);
+        jPanelcombo.add(listaEstadosEvento);
     }
 
     private void intModelo() {
         valorTotal = 0;
-        modelo = new DefaultTableModel();
-        modelo.addColumn("NOMBRE");
-        modelo.addColumn("VALOR");
+        modeloTabla = new DefaultTableModel();
+        modeloTabla.addColumn("NOMBRE");
+        modeloTabla.addColumn("VALOR");
         jTable1servicios.repaint();
     }
 
@@ -563,13 +567,13 @@ public class Eventosp extends javax.swing.JPanel {
     }
 
     private void eliminarServicioLista(String nombreServicio) {
-        if (getE().isValidString(objtabla)) {
+        if (getE().isValidString(ServiciosListados)) {
             String cadena;
-            cadena = objtabla;
+            cadena = ServiciosListados;
 
             cadena = cadena.replaceAll("\\d+ - " + nombreServicio + "(, |$)", "");
             cadena = cadena.replaceAll(",\\s*(?=,|$)", "");
-            objtabla = cadena;
+            ServiciosListados = cadena;
         }
     }
 
@@ -626,16 +630,16 @@ public class Eventosp extends javax.swing.JPanel {
     }
 
     private void limpiarCampos() {
-        
-        showJpanel(jPanellistaservicios);
-    }
-    
-    private void showJpanel(JPanel p)
-    {
-        jPanelbackprincipal.removeAll();
-        jPanelbackprincipal.add(p);
-        jPanelbackprincipal.revalidate();
-        jPanelbackprincipal.repaint();
+        jPanelchoice.remove(listaServicios);
+        jPanelcombo.remove(listaEstadosEvento);
+        jPanellistaservicios.remove(jTable1servicios);
+        jLabelvalor.setText("");
+        jTextFieldnombreevento.setText("");
+        rSDateChooserfecha.setDatoFecha(null);
+        jTextAreadescripcion.setText("");
+        modeloTabla.setRowCount(0);
+        modeloTabla.setNumRows(0);
+        llenarTodo();
     }
 
     private void llenarTodo() {
@@ -657,7 +661,7 @@ public class Eventosp extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelsubtotalñtitulo;
     private javax.swing.JLabel jLabeltitulovalor;
     private javax.swing.JLabel jLabelvalor;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel1Valor;
     private javax.swing.JPanel jPanelback;
     private javax.swing.JPanel jPanelbackprincipal;
     private javax.swing.JPanel jPanelchoice;

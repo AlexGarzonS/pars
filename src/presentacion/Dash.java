@@ -7,6 +7,8 @@ package presentacion;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import presentacion.views.Eventosp;
+import presentacion.views.EventospC;
+import presentacion.views.Facturasp;
 import presentacion.views.ServiciosP;
 
 /**
@@ -37,6 +39,8 @@ public class Dash extends javax.swing.JFrame {
         jButtonPrincipal = new javax.swing.JButton();
         jButtonEventos = new javax.swing.JButton();
         jButtonServicios = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButtonfacturas = new javax.swing.JButton();
         jPanelhorizontal = new javax.swing.JPanel();
         jpanelContenido = new javax.swing.JPanel();
 
@@ -57,7 +61,7 @@ public class Dash extends javax.swing.JFrame {
             }
         });
 
-        jButtonEventos.setText("EVENTOS");
+        jButtonEventos.setText("CREAR EVENTO");
         jButtonEventos.setBorder(null);
         jButtonEventos.setBorderPainted(false);
         jButtonEventos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -77,24 +81,44 @@ public class Dash extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("CONSULTAR EVENTOS");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButtonfacturas.setText("FACTURAS");
+        jButtonfacturas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonfacturasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelverticalLayout = new javax.swing.GroupLayout(jPanelvertical);
         jPanelvertical.setLayout(jPanelverticalLayout);
         jPanelverticalLayout.setHorizontalGroup(
             jPanelverticalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jButtonPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButtonEventos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButtonServicios, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+            .addComponent(jButtonServicios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+            .addComponent(jButtonfacturas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanelverticalLayout.setVerticalGroup(
             jPanelverticalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelverticalLayout.createSequentialGroup()
-                .addGap(183, 183, 183)
-                .addComponent(jButtonPrincipal)
-                .addGap(11, 11, 11)
-                .addComponent(jButtonServicios)
+                .addGap(173, 173, 173)
+                .addComponent(jButtonPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonServicios, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonEventos, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonEventos)
-                .addContainerGap(348, Short.MAX_VALUE))
+                .addComponent(jButtonfacturas)
+                .addContainerGap(275, Short.MAX_VALUE))
         );
 
         jPanelhorizontal.setBackground(new java.awt.Color(0, 102, 255));
@@ -103,7 +127,7 @@ public class Dash extends javax.swing.JFrame {
         jPanelhorizontal.setLayout(jPanelhorizontalLayout);
         jPanelhorizontalLayout.setHorizontalGroup(
             jPanelhorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 930, Short.MAX_VALUE)
+            .addGap(0, 916, Short.MAX_VALUE)
         );
         jPanelhorizontalLayout.setVerticalGroup(
             jPanelhorizontalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,7 +159,7 @@ public class Dash extends javax.swing.JFrame {
                     .addComponent(jPanelhorizontal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelBackgrondLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jpanelContenido, javax.swing.GroupLayout.DEFAULT_SIZE, 924, Short.MAX_VALUE))))
+                        .addComponent(jpanelContenido, javax.swing.GroupLayout.DEFAULT_SIZE, 910, Short.MAX_VALUE))))
         );
         panelBackgrondLayout.setVerticalGroup(
             panelBackgrondLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,8 +194,16 @@ public class Dash extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEventosActionPerformed
 
     private void jButtonServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonServiciosActionPerformed
-         showJpanel(new ServiciosP());
+        showJpanel(new ServiciosP());
     }//GEN-LAST:event_jButtonServiciosActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        showJpanel(new EventospC());
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonfacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonfacturasActionPerformed
+        showJpanel(new Facturasp());
+    }//GEN-LAST:event_jButtonfacturasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,26 +238,26 @@ public class Dash extends javax.swing.JFrame {
             }
         });
     }
-    
-    private void initComponet()
-    {
-       showJpanel(new Principal());
+
+    private void initComponet() {
+        showJpanel(new Principal());
     }
-    
-    private void showJpanel(JPanel p)
-    {
-        p.setSize(910,430);
+
+    private void showJpanel(JPanel p) {
+        p.setSize(910, 430);
         p.setLocation(0, 0);
         jpanelContenido.removeAll();
-        jpanelContenido.add(p,BorderLayout.CENTER);
+        jpanelContenido.add(p, BorderLayout.CENTER);
         jpanelContenido.revalidate();
         jpanelContenido.repaint();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonEventos;
     private javax.swing.JButton jButtonPrincipal;
     private javax.swing.JButton jButtonServicios;
+    private javax.swing.JButton jButtonfacturas;
     private javax.swing.JPanel jPanelhorizontal;
     private javax.swing.JPanel jPanelvertical;
     private javax.swing.JPanel jpanelContenido;

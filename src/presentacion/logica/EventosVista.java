@@ -8,7 +8,6 @@ import ControlErrores.ControlErrores;
 import bussines.Eventos.EventosBusiness;
 import bussines.Servicios.ServiciosBussines;
 import java.awt.Choice;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,6 +15,8 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JComboBox;
+import javax.swing.table.DefaultTableModel;
+import modelo.Eventos.Eventos;
 import modelo.Servicios.Servicios;
 
 /**
@@ -169,9 +170,12 @@ public class EventosVista {
         return obj;
     }
 
-    public void insertarEvento(String doc, String tdoc, Date fechaCaptura, String nombreEvento, String estadoEvento, String descripcion, String servicios, String subtotal,
+    public int insertarEvento(String doc, String tdoc, Date fechaCaptura, String nombreEvento, String estadoEvento, String descripcion, String servicios, String subtotal,
             double total) {
+        int id;
+        id = 0;
         try {
+            int resultado;
             Date fecha;
             double valorTotalSub;
             double valorConvert;
@@ -179,6 +183,7 @@ public class EventosVista {
             SimpleDateFormat formato;
             String fechaFormateada;
 
+            resultado = 0;
             Pattern pattern = Pattern.compile("\\d+");
             Matcher matcher = pattern.matcher(servicios);
             valorTotalSub = 0;
@@ -186,7 +191,7 @@ public class EventosVista {
             formato = new SimpleDateFormat("yyyy-MM-dd");
             fechaFormateada = formato.format(fechaCaptura);
             fecha = formato.parse(fechaFormateada);
-            
+
             while (matcher.find()) {
                 output.append(matcher.group()).append(",");
             }
@@ -199,13 +204,64 @@ public class EventosVista {
                 valorTotalSub = total - valorConvert;
             }
 
-            getEvent().insertarEventoFactura(doc, tdoc, fecha, nombreEvento, estadoEvento, descripcion, output.toString(), valorTotalSub);
+            resultado = getEvent().insertarEventoFactura(doc, tdoc, fecha, nombreEvento, estadoEvento, descripcion, output.toString(), valorTotalSub);
 
-        }catch(Exception ex)
-        {
+            if (resultado > 0) {
+                id = resultado;
+            }
+
+        } catch (Exception ex) {
             System.out.println("EventosVista::insertarEvento " + ex.getMessage());
-        } 
+        }
+        return id;
+    }
 
+    public DefaultTableModel ConsultarEventos() {
+        DefaultTableModel model;
+
+        model = new DefaultTableModel();
+
+        try {
+            Collection<Eventos> colecionservicios;
+
+            colecionservicios = new ArrayList<Eventos>();
+
+            colecionservicios = getEvent().consultar();
+
+            if (getE().isValidCollection(colecionservicios)) {
+                Object[] obj;
+                model = new DefaultTableModel();
+                obj = null;
+
+                model.addColumn("ID");
+                model.addColumn("NOMBRE");
+                model.addColumn("DESCRIPCION");
+                model.addColumn("ESTADO");
+                model.addColumn("FECHA EVENTO");
+
+                for (Eventos iterador : colecionservicios) {
+
+                    obj = new Object[]{iterador.getId_evento(), iterador.getNombre(), iterador.getDescripcion(), iterador.getEstado(), iterador.getFecha()};
+                    model.addRow(obj);
+                }
+            }
+
+        } catch (Exception ex) {
+            System.out.println("EventosVista::ConsultarEventos " + ex.getMessage());
+        }
+        return model;
+    }
+    
+    public void eliminarEvento(int id) {
+
+        try {
+            
+           getEvent().eliminarEventoFactura(id);
+
+        } catch (Exception ex) {
+            System.out.println("EventosVista::insertarEvento " + ex.getMessage());
+        }
+  
     }
 
 }
