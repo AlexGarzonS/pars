@@ -22,7 +22,7 @@ public class FacturasBusiness extends ControlErrores {
         coleccionReturn = null;
         try {
             Collection<Facturas> coleccion;
-            coleccion = new ArrayList<Facturas>();
+            coleccion = new ArrayList<>();
             FacturasDao facturaDao;
             facturaDao = new FacturasDao();
 
@@ -30,6 +30,31 @@ public class FacturasBusiness extends ControlErrores {
 
             if (isValidCollection(coleccion)) {
                 coleccionReturn = coleccion;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("FacturasBusiness::ConsultarFacturas " + e.getMessage());
+        }
+
+        return coleccionReturn;
+    }
+    
+        public Collection<Facturas> ConsultarFacturasEstado(String estado) {
+        Collection<Facturas> coleccionReturn;
+        coleccionReturn = null;
+        try {
+            if(isValidString(estado))
+            {
+                Collection<Facturas> coleccion;
+                coleccion = new ArrayList<>();
+                FacturasDao facturaDao;
+                facturaDao = new FacturasDao();
+
+                coleccion = facturaDao.consultaFacturasEstado(estado);
+
+                if (isValidCollection(coleccion)) {
+                    coleccionReturn = coleccion;
+                }
             }
 
         } catch (SQLException e) {

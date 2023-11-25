@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/pruebas/src/presentacion/logica/EventosVista.java</file>
-            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/pruebas/src/presentacion/Dash.java</file>
-            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/pruebas/src/presentacion/views/ServiciosP.java</file>
-            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/pruebas/src/bussines/Eventos/EventosBusiness.java</file>
-            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/pruebas/src/dao/Eventos/EventosDao.java</file>
-            <file>file:/C:/Users/Dev/Documents/NetBeansProjects/pruebas/src/presentacion/views/Eventosp.java</file>
+            <file>file:/C:/Users/Hammer/Documents/proyectofinal/pars/src/presentacion/Dash.java</file>
+            <file>file:/C:/Users/Hammer/Documents/proyectofinal/pars/src/presentacion/logica/PrincipalVista.java</file>
+            <file>file:/C:/Users/Hammer/Documents/proyectofinal/pars/src/presentacion/views/Eventosp.java</file>
+            <file>file:/C:/Users/Hammer/Documents/proyectofinal/pars/src/presentacion/views/Principal.java</file>
         </group>
     </open-files>
 </project-private>

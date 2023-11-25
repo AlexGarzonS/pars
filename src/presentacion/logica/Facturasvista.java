@@ -66,4 +66,52 @@ public class Facturasvista {
         }
         return model;
     }
+    
+        public DefaultTableModel ListaFacturasEstado(String estado) {
+        Collection<Facturas> collectionServices;
+        DefaultTableModel model;
+
+        collectionServices = null;
+        model = null;
+        try {
+            ControlErrores utils;
+            utils = new ControlErrores();
+            if(utils.isValidString(estado))
+            {
+                FacturasBusiness facturasB;
+
+                facturasB = new FacturasBusiness();
+
+                collectionServices = new ArrayList<>();
+
+                collectionServices = facturasB.ConsultarFacturasEstado(estado);
+
+                if (utils.isValidCollection(collectionServices)) {
+                    Object[] obj;
+                    model = new DefaultTableModel();
+                    obj = null;
+
+                    model.addColumn("ID");
+                    model.addColumn("ID EVENTO");
+                    model.addColumn("ID CLIENTE");
+                    model.addColumn("FECHA");
+                    model.addColumn("SUB TOTAL");
+                    model.addColumn("VALOR TOTAL");
+
+                    for (Facturas iterador : collectionServices) {
+
+                        obj = new Object[]{iterador.getIdfactura(), iterador.getIdEvento(), iterador.getIdcliente(),
+                            iterador.getFecha(), iterador.getSubvalor(), iterador.getValor()};
+                        model.addRow(obj);
+                    }
+
+                } else {
+                    System.out.println("No hay datos");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("ServiciosVista::Listaservicios " + "No es posible realizar consulta " + e.getMessage());
+        }
+        return model;
+    }
 }

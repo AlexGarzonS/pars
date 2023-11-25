@@ -4,7 +4,11 @@
  */
 package presentacion;
 
+import presentacion.views.Principal;
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Font;
 import javax.swing.JPanel;
 import presentacion.views.Eventosp;
 import presentacion.views.EventospC;
@@ -23,6 +27,7 @@ public class Dash extends javax.swing.JFrame {
     public Dash() {
         initComponents();
         initComponet();
+        chanceFontPrincipal();
     }
 
     /**
@@ -54,7 +59,7 @@ public class Dash extends javax.swing.JFrame {
         jButtonPrincipal.setText("PRINCIPAL");
         jButtonPrincipal.setBorder(null);
         jButtonPrincipal.setBorderPainted(false);
-        jButtonPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonPrincipal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPrincipalActionPerformed(evt);
@@ -64,7 +69,7 @@ public class Dash extends javax.swing.JFrame {
         jButtonEventos.setText("CREAR EVENTO");
         jButtonEventos.setBorder(null);
         jButtonEventos.setBorderPainted(false);
-        jButtonEventos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonEventos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonEventos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEventosActionPerformed(evt);
@@ -74,7 +79,7 @@ public class Dash extends javax.swing.JFrame {
         jButtonServicios.setText("SERVICIOS");
         jButtonServicios.setBorder(null);
         jButtonServicios.setBorderPainted(false);
-        jButtonServicios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonServicios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonServicios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonServiciosActionPerformed(evt);
@@ -82,6 +87,7 @@ public class Dash extends javax.swing.JFrame {
         });
 
         jButton1.setText("CONSULTAR EVENTOS");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -89,6 +95,7 @@ public class Dash extends javax.swing.JFrame {
         });
 
         jButtonfacturas.setText("FACTURAS");
+        jButtonfacturas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonfacturas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonfacturasActionPerformed(evt);
@@ -116,9 +123,9 @@ public class Dash extends javax.swing.JFrame {
                 .addComponent(jButtonEventos, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonfacturas)
-                .addContainerGap(275, Short.MAX_VALUE))
+                .addContainerGap(282, Short.MAX_VALUE))
         );
 
         jPanelhorizontal.setBackground(new java.awt.Color(0, 102, 255));
@@ -242,14 +249,32 @@ public class Dash extends javax.swing.JFrame {
     private void initComponet() {
         showJpanel(new Principal());
     }
+    
+    private static void cambiarFuente(Component componente, Font fuente) {
+        if (componente instanceof Container) {
+            for (Component componenteAnidado : ((Container) componente).getComponents()) {
+                cambiarFuente(componenteAnidado, fuente);
+            }
+        }
+        
+        componente.setFont(fuente);
+    }
+    
+    private void chanceFontPrincipal()
+    {
+        Font fuente = new Font("Times New Roman", Font.BOLD, 14);
+        cambiarFuente(panelBackgrond, fuente);
+    }
 
     private void showJpanel(JPanel p) {
+        Font fuente = new Font("Times New Roman", Font.BOLD, 14);
         p.setSize(910, 430);
         p.setLocation(0, 0);
         jpanelContenido.removeAll();
         jpanelContenido.add(p, BorderLayout.CENTER);
         jpanelContenido.revalidate();
         jpanelContenido.repaint();
+        cambiarFuente(jpanelContenido, fuente);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

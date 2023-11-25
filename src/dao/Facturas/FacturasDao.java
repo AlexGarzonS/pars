@@ -4,6 +4,7 @@
  */
 package dao.Facturas;
 
+import ControlErrores.ControlErrores;
 import connection.ConnectionDb;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,10 +17,13 @@ import modelo.Facturas.Facturas;
  *
  * @author Dev
  */
-public class FacturasDao extends ConnectionDb{
-    
+public class FacturasDao extends ConnectionDb {
+
     private static final String cs_CONSULTAFACTURAS = "Select * from fACTURAS ";
-    
+    private static final String cs_ESTADOfACTURA = "SELECT f.* FROM facturas f "
+            + "INNER JOIN Eventos e ON (e.eventoID = f.id_evento) "
+            + "WHERE e.Estado = ?";
+
     public Collection<Facturas> consultaFacturas()
             throws SQLException {
         Collection<Facturas> coleccionRetorno;
@@ -48,7 +52,42 @@ public class FacturasDao extends ConnectionDb{
 
         return coleccionRetorno;
     }
-    
+
+    public Collection<Facturas> consultaFacturasEstado(String estado)
+            throws SQLException {
+        Collection<Facturas> coleccionRetorno;
+        PreparedStatement ps;
+        ResultSet rs;
+
+        coleccionRetorno = null;
+        ps = null;
+        rs = null;
+
+        try {
+            ControlErrores er;
+            er = new ControlErrores();
+            if (er.isValidString(estado)) {
+                coleccionRetorno = new ArrayList<>();
+                ps = conectar().prepareStatement(cs_ESTADOfACTURA);
+                ps.setString(1, estado);
+                rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    coleccionRetorno.add(getDataFactura(rs));
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("FacturasDao::consultaFacturas " + e.getMessage());
+        } finally {
+            closeRs(rs);
+            closePs(ps);
+            CerraConector();
+        }
+
+        return coleccionRetorno;
+    }
+
     private Facturas getDataFactura(ResultSet ars)
             throws SQLException {
         Facturas returnServices;
@@ -63,5 +102,5 @@ public class FacturasDao extends ConnectionDb{
 
         return returnServices;
     }
-    
+
 }

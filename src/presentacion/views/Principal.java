@@ -2,7 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package presentacion;
+package presentacion.views;
+
+import javax.swing.JLabel;
+import presentacion.logica.PrincipalVista;
 
 /**
  *
@@ -10,11 +13,11 @@ package presentacion;
  */
 public class Principal extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Principal
-     */
+    private PrincipalVista vista;
+    
     public Principal() {
         initComponents();
+        renderMisionVision();
     }
 
     /**
@@ -28,10 +31,63 @@ public class Principal extends javax.swing.JPanel {
 
         jPanelbackprincipal = new javax.swing.JPanel();
         jlabelHead = new javax.swing.JLabel();
+        jPanelMisionVision = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabelVision = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabelMision = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabelHacemos = new javax.swing.JLabel();
 
         jPanelbackprincipal.setBackground(new java.awt.Color(255, 255, 255));
 
-        jlabelHead.setText("ESTE ES UN TITULO CUARQUIERA");
+        jlabelHead.setText("PARS");
+
+        jLabel1.setText("Visión");
+
+        jLabel3.setText("Misión");
+
+        jLabel2.setText("Que hacemos");
+
+        javax.swing.GroupLayout jPanelMisionVisionLayout = new javax.swing.GroupLayout(jPanelMisionVision);
+        jPanelMisionVision.setLayout(jPanelMisionVisionLayout);
+        jPanelMisionVisionLayout.setHorizontalGroup(
+            jPanelMisionVisionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabelMision, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanelMisionVisionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelMisionVisionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelVision, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanelMisionVisionLayout.createSequentialGroup()
+                        .addGroup(jPanelMisionVisionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelMisionVisionLayout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+                                .addGap(4, 4, 4))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(228, 228, 228))
+                    .addGroup(jPanelMisionVisionLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabelHacemos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanelMisionVisionLayout.setVerticalGroup(
+            jPanelMisionVisionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelMisionVisionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabelVision, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelMision, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelHacemos, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout jPanelbackprincipalLayout = new javax.swing.GroupLayout(jPanelbackprincipal);
         jPanelbackprincipal.setLayout(jPanelbackprincipalLayout);
@@ -39,14 +95,22 @@ public class Principal extends javax.swing.JPanel {
             jPanelbackprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelbackprincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jlabelHead, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(462, Short.MAX_VALUE))
+                .addGroup(jPanelbackprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelbackprincipalLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jPanelMisionVision, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanelbackprincipalLayout.createSequentialGroup()
+                        .addComponent(jlabelHead, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanelbackprincipalLayout.setVerticalGroup(
             jPanelbackprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelbackprincipalLayout.createSequentialGroup()
                 .addComponent(jlabelHead, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(344, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelMisionVision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -61,8 +125,29 @@ public class Principal extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void renderMisionVision()
+    {
+        jLabelMision.setText(getVista().getMision());
+        jLabelVision.setText(getVista().getVision());
+        jLabelHacemos.setText(getVista().getHacemos());
+        
+    }
+
+    private PrincipalVista getVista() {
+        vista = new PrincipalVista();
+        return vista;
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabelHacemos;
+    private javax.swing.JLabel jLabelMision;
+    private javax.swing.JLabel jLabelVision;
+    private javax.swing.JPanel jPanelMisionVision;
     private javax.swing.JPanel jPanelbackprincipal;
     private javax.swing.JLabel jlabelHead;
     // End of variables declaration//GEN-END:variables

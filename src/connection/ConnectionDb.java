@@ -23,9 +23,8 @@ public class ConnectionDb {
             throws SQLException {
         String url;
         String className;
-        url = "jdbc:sqlserver://localhost:1433;databaseName=pars;user=sa;password=123";
-                //+ "encrypt=true;trustServerCertificate=true";
-        
+        url = "jdbc:sqlserver://localhost:1433;databaseName=pars;user=sa;password=123;"
+                + "encrypt=true;trustServerCertificate=true";
         className = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
         try {
             Class.forName(className);

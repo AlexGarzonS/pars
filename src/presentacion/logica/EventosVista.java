@@ -8,6 +8,7 @@ import ControlErrores.ControlErrores;
 import bussines.Eventos.EventosBusiness;
 import bussines.Servicios.ServiciosBussines;
 import java.awt.Choice;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -200,7 +201,7 @@ public class EventosVista {
                 output.deleteCharAt(output.length() - 1);
             }
             if (estadoEvento.equalsIgnoreCase("pendiente")) {
-                valorConvert = Double.valueOf(subtotal);
+                valorConvert = Double.parseDouble(subtotal);
                 valorTotalSub = total - valorConvert;
             }
 
@@ -210,7 +211,7 @@ public class EventosVista {
                 id = resultado;
             }
 
-        } catch (Exception ex) {
+        } catch (NumberFormatException | ParseException ex) {
             System.out.println("EventosVista::insertarEvento " + ex.getMessage());
         }
         return id;

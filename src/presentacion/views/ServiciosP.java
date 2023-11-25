@@ -364,6 +364,8 @@ public class ServiciosP extends javax.swing.JPanel {
 
             limpiarCampos();
             llenarTablaServicios();
+            jButtonInsert.setEnabled(true);
+            jButtonDelete.setEnabled(true);
         }
     }//GEN-LAST:event_jButtonUpdateActionPerformed
 
@@ -387,6 +389,8 @@ public class ServiciosP extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "esta deshabilidata por el momento");
             limpiarCampos();
             llenarTablaServicios();
+            jButtonInsert.setEnabled(true);
+            jButtonUpdate.setEnabled(true);
         }
 
     }//GEN-LAST:event_jButtonDeleteActionPerformed
