@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package presentacion;
 
 import presentacion.views.Principal;
@@ -17,7 +13,7 @@ import presentacion.views.ServiciosP;
 
 /**
  *
- * @author Dev
+ * @author JGARZON
  */
 public class Dash extends javax.swing.JFrame {
 
@@ -191,23 +187,38 @@ public class Dash extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    /*Acción en panel menu opción principal muestra un jpanel con el contenido de la pagina principal*/
+    /**
+     * Acción en panel menu opción principal muestra un jpanel con el contenido de la pagina principal
+     * 
+     */
     private void jButtonPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrincipalActionPerformed
         showJpanel(new Principal());
     }//GEN-LAST:event_jButtonPrincipalActionPerformed
-/*Acción en panel menu opción crear eventos muestra un jpanel con el contenido de la pagina crear eventos*/
+     /**
+     * Acción en panel menu opción crear eventos muestra un jpanel con el contenido de la pagina crear eventos
+     * 
+     */
     private void jButtonEventosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEventosActionPerformed
         showJpanel(new Eventosp());
     }//GEN-LAST:event_jButtonEventosActionPerformed
-/*Acción en panel menu opción servicios muestra un jpanel con el contenido de la pagina servicios*/
+    /**
+     * Acción en panel menu opción servicios muestra un jpanel con el contenido de la pagina servicios
+     * 
+     */
     private void jButtonServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonServiciosActionPerformed
         showJpanel(new ServiciosP());
     }//GEN-LAST:event_jButtonServiciosActionPerformed
-/*Acción en panel menu opción consultar eventos muestra un jpanel con el contenido de la pagina consultar eventos*/
+    /**
+     * Acción en panel menu opción consultar eventos muestra un jpanel con el contenido de la pagina consultar eventos
+     * 
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         showJpanel(new EventospC());
     }//GEN-LAST:event_jButton1ActionPerformed
-/*Acción en panel menu opción facturas muestra un jpanel con el contenido de la pagina facturas*/
+    /**
+     * Acción en panel menu opción facturas muestra un jpanel con el contenido de la pagina facturas
+     * 
+     */
     private void jButtonfacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonfacturasActionPerformed
         showJpanel(new Facturasp());
     }//GEN-LAST:event_jButtonfacturasActionPerformed
@@ -245,7 +256,9 @@ public class Dash extends javax.swing.JFrame {
             }
         });
     }
-/*Funcion que renderiza el primer contenido a mostrar*/
+    /**
+     * renderiza el primer contenido a mostrar
+     */
     private void initComponet() {
         showJpanel(new Principal());
     }
@@ -265,7 +278,7 @@ public class Dash extends javax.swing.JFrame {
         componente.setFont(fuente);
     }
     
-    /*
+    /**
      *Se define fuente principal para componente panelBackgrond
      */
     private void cambiarFuentePrincipal()
