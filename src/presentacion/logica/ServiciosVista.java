@@ -18,8 +18,8 @@ import modelo.Servicios.Servicios;
 public class ServiciosVista {
 
     /**
-     *
-     * @return
+     * Crea modelo de datos para Jtable
+     * @return DefaultTableModel
      */
     public DefaultTableModel Listaservicios() {
         Collection<Servicios> collectionServices;

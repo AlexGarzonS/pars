@@ -23,7 +23,14 @@ public class FacturasDao extends ConnectionDb {
     private static final String cs_ESTADOfACTURA = "SELECT f.* FROM facturas f "
             + "INNER JOIN Eventos e ON (e.eventoID = f.id_evento) "
             + "WHERE e.Estado = ?";
+    
 
+    /**
+    * Consulta las diferentes facturas ingresadas
+    * 
+    * @return coleccion de facturas
+    * @throws SQLException excepcion sql
+    */
     public Collection<Facturas> consultaFacturas()
             throws SQLException {
         Collection<Facturas> coleccionRetorno;
@@ -53,6 +60,12 @@ public class FacturasDao extends ConnectionDb {
         return coleccionRetorno;
     }
 
+    /**
+    * Consulta estado de la factura con relación al evento
+    * @param estado estado a consultar
+    * @return coleccion de facturas
+    * @throws SQLException excepcion sql
+    */
     public Collection<Facturas> consultaFacturasEstado(String estado)
             throws SQLException {
         Collection<Facturas> coleccionRetorno;
@@ -88,6 +101,11 @@ public class FacturasDao extends ConnectionDb {
         return coleccionRetorno;
     }
 
+    /**
+    * Funcion para recolectar información de base de datos en un objeto personalizado
+    * @param ars  Objeto ResultSet
+    * @return Objeto facturas
+    */
     private Facturas getDataFactura(ResultSet ars)
             throws SQLException {
         Facturas returnServices;

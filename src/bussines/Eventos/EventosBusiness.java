@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package bussines.Eventos;
 
 import ControlErrores.ControlErrores;
@@ -14,10 +10,15 @@ import modelo.Eventos.Eventos;
 
 /**
  *
- * @author Dev
+ * @author JGARZON
  */
 public class EventosBusiness extends ControlErrores {
 
+    /**
+     * Consulta todos los estados de los eventos
+     *
+     * @return coleccion de String
+     */
     public Collection<String> traerEstadoEvento() {
         Collection<String> coleccionReturn;
         coleccionReturn = null;
@@ -39,7 +40,12 @@ public class EventosBusiness extends ControlErrores {
 
         return coleccionReturn;
     }
-    
+
+    /**
+     * Consulta todos los eventos
+     *
+     * @return coleccion de eventos
+     */
     public Collection<Eventos> consultar() {
         Collection<Eventos> coleccionReturn;
         coleccionReturn = null;
@@ -62,6 +68,19 @@ public class EventosBusiness extends ControlErrores {
         return coleccionReturn;
     }
 
+    /**
+     * Funcion encargada de insertar eventos
+     *
+     * @param documento Documento cliente
+     * @param tipoDocumento Tipo documento cliente
+     * @param fecha Fecha evento
+     * @param nombreEvento Nombre evento
+     * @param estado Estado del evento
+     * @param descripcion Descripcion del evento
+     * @param servicios Diferentes servicios vinculados al evento
+     * @param subtotal subtotal de valor evento en caso de tenerlo
+     * @return id evento creado
+     */
     public int insertarEventoFactura(String documento, String tipoDocumento, Date fecha, String nombreEvento, String estado, String descripcion, String servicios, double subtotal) {
         int id;
         id = 0;
@@ -69,9 +88,8 @@ public class EventosBusiness extends ControlErrores {
             int resultado;
             EventosDao DaoEvento;
             DaoEvento = new EventosDao();
-            resultado =DaoEvento.InsertarEventoFactura(documento, tipoDocumento, fecha, nombreEvento, estado, descripcion, servicios, subtotal);
-            if(resultado > 0)
-            {
+            resultado = DaoEvento.InsertarEventoFactura(documento, tipoDocumento, fecha, nombreEvento, estado, descripcion, servicios, subtotal);
+            if (resultado > 0) {
                 id = resultado;
             }
         } catch (SQLException e) {
@@ -79,12 +97,16 @@ public class EventosBusiness extends ControlErrores {
         }
         return id;
     }
-    
+
+    /**
+     * Elimina evento por id
+     *
+     * @param id evento a eliminar
+     */
     public void eliminarEventoFactura(int id) {
 
         try {
-            if(id > 0)
-            {
+            if (id > 0) {
                 EventosDao DaoEvento;
                 DaoEvento = new EventosDao();
                 DaoEvento.eliminarEventoFactura(id);

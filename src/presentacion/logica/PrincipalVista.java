@@ -8,22 +8,22 @@ import ControlErrores.ControlErrores;
 import bussines.Servicios.ServiciosBussines;
 import java.util.ArrayList;
 import java.util.Collection;
-import javax.swing.JLabel;
 import modelo.Servicios.Servicios;
 
 /**
  *
- * @author Hammer
+ * @author JGARZON
  */
 public class PrincipalVista {
 
+    /*Clase especializada para controlar errores*/
     private ControlErrores e;
-
+    /*Instanciación ControlErrores*/
     private ControlErrores getE() {
         e = new ControlErrores();
         return e;
     }
-
+    /*Funcion para mostrar mensajes personalizados*/
     public String getVision() {
         StringBuilder vision;
 
@@ -36,7 +36,7 @@ public class PrincipalVista {
         }
         return vision.toString();
     }
-
+    /*Funcion para mostrar mensajes personalizados*/
     public String getMision() {
         StringBuilder mision;
 
@@ -50,7 +50,7 @@ public class PrincipalVista {
         }
         return mision.toString();
     }
-
+    /*Funcion para mostrar mensajes personalizados*/
     public String getHacemos() {
         String retunMesaje;
         retunMesaje = null;

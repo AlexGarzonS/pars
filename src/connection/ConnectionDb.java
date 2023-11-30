@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package connection;
 
 import java.sql.CallableStatement;
@@ -13,18 +9,19 @@ import java.sql.SQLException;
 
 /**
  *
- * @author Dev
+ * @author JGARZON
  */
 public class ConnectionDb {
 
     Connection cn = null;
 
+    /*Se crear funcion para establecer conexión con la base de datos*/
     public Connection conectar()
             throws SQLException {
         String url;
         String className;
-        url = "jdbc:sqlserver://localhost:1433;databaseName=pars;user=sa;password=123;"
-                + "encrypt=true;trustServerCertificate=true";
+        url = "jdbc:sqlserver://localhost:1433;databaseName=pars;user=sa;password=123;";
+        //+ "encrypt=true;trustServerCertificate=true";
         className = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
         try {
             Class.forName(className);
@@ -35,6 +32,7 @@ public class ConnectionDb {
         return cn;
     }
 
+    /*Cerramos las posible conexiones echar a la base de datos*/
     public void CerraConector()
             throws SQLException {
         try {
@@ -48,6 +46,7 @@ public class ConnectionDb {
         }
     }
 
+    /*cerramos objetos ResultSet */
     public static void closeRs(ResultSet ars_rs)
             throws SQLException {
         if (ars_rs != null) {
@@ -55,12 +54,15 @@ public class ConnectionDb {
         }
     }
 
+    /*cerramos objetos PreparedStatement */
     public static void closePs(PreparedStatement ars_ps)
             throws SQLException {
         if (ars_ps != null) {
             ars_ps.close();
         }
     }
+
+    /*cerramos objetos CallableStatement */
     public static void closeCall(CallableStatement ars_ps)
             throws SQLException {
         if (ars_ps != null) {

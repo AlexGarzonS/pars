@@ -22,12 +22,12 @@ import presentacion.views.ServiciosP;
 public class Dash extends javax.swing.JFrame {
 
     /**
-     * Creates new form Login
+     * Inicialización de frame
      */
     public Dash() {
         initComponents();
         initComponet();
-        chanceFontPrincipal();
+        cambiarFuentePrincipal();
     }
 
     /**
@@ -191,23 +191,23 @@ public class Dash extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /*Acción en panel menu opción principal muestra un jpanel con el contenido de la pagina principal*/
     private void jButtonPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrincipalActionPerformed
         showJpanel(new Principal());
     }//GEN-LAST:event_jButtonPrincipalActionPerformed
-
+/*Acción en panel menu opción crear eventos muestra un jpanel con el contenido de la pagina crear eventos*/
     private void jButtonEventosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEventosActionPerformed
         showJpanel(new Eventosp());
     }//GEN-LAST:event_jButtonEventosActionPerformed
-
+/*Acción en panel menu opción servicios muestra un jpanel con el contenido de la pagina servicios*/
     private void jButtonServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonServiciosActionPerformed
         showJpanel(new ServiciosP());
     }//GEN-LAST:event_jButtonServiciosActionPerformed
-
+/*Acción en panel menu opción consultar eventos muestra un jpanel con el contenido de la pagina consultar eventos*/
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         showJpanel(new EventospC());
     }//GEN-LAST:event_jButton1ActionPerformed
-
+/*Acción en panel menu opción facturas muestra un jpanel con el contenido de la pagina facturas*/
     private void jButtonfacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonfacturasActionPerformed
         showJpanel(new Facturasp());
     }//GEN-LAST:event_jButtonfacturasActionPerformed
@@ -245,11 +245,16 @@ public class Dash extends javax.swing.JFrame {
             }
         });
     }
-
+/*Funcion que renderiza el primer contenido a mostrar*/
     private void initComponet() {
         showJpanel(new Principal());
     }
     
+/*Cambia la fuente general en los componentes renderizados en pantalla
+ *
+ * @param componente argumento de tipo Component
+ * @param fuente argumento de tipo Font
+ */    
     private static void cambiarFuente(Component componente, Font fuente) {
         if (componente instanceof Container) {
             for (Component componenteAnidado : ((Container) componente).getComponents()) {
@@ -260,12 +265,19 @@ public class Dash extends javax.swing.JFrame {
         componente.setFont(fuente);
     }
     
-    private void chanceFontPrincipal()
+    /*
+     *Se define fuente principal para componente panelBackgrond
+     */
+    private void cambiarFuentePrincipal()
     {
         Font fuente = new Font("Times New Roman", Font.BOLD, 14);
         cambiarFuente(panelBackgrond, fuente);
     }
-
+    
+    /*
+     *Funcion que renderiza los Jpanel correspondientes en el menu
+     *@param p argumento de tipo JPanel
+     */
     private void showJpanel(JPanel p) {
         Font fuente = new Font("Times New Roman", Font.BOLD, 14);
         p.setSize(910, 430);

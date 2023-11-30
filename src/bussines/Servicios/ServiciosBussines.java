@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package bussines.Servicios;
 
 import ControlErrores.ControlErrores;
@@ -13,10 +9,15 @@ import modelo.Servicios.Servicios;
 
 /**
  *
- * @author Dev
+ * @author JGARZON
  */
 public class ServiciosBussines extends ControlErrores {
 
+    /**
+     * Colección de servicios consultados en la base de datos
+     *
+     * @return colección servicios
+     */
     public Collection<Servicios> traerListaServicios() {
         Collection<Servicios> coleccionReturn;
         coleccionReturn = null;
@@ -39,6 +40,11 @@ public class ServiciosBussines extends ControlErrores {
         return coleccionReturn;
     }
 
+    /**
+     * Realiza inserción de datos
+     *
+     * @param a_servicios objeto tipo servicios
+     */
     public void insertarServicio(Servicios a_servicios) {
         try {
             ServiciosDao DaoServicio;
@@ -53,6 +59,11 @@ public class ServiciosBussines extends ControlErrores {
         }
     }
 
+    /**
+     * Realiza actualización de datos
+     *
+     * @param a_servicio objeto tipo servicios
+     */
     public void actualizarServicio(Servicios a_servicio) {
         try {
             ServiciosDao DaoServicio;

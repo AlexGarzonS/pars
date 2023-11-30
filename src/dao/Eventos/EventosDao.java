@@ -28,6 +28,12 @@ public class EventosDao extends ConnectionDb {
     private static final String cs_CONSULTAREVENTOS = "select * from Eventos";
     private static final String cs_SP_ELIMINAR_EVENTO_FACTURA = "{call sp_EliminarEventoFactura(?)}";
 
+    /**
+     * Consulta los diferentes eventos insertados
+     *
+     * @return coleccion de eventos
+     * @throws java.sql.SQLException excepcion sql
+     */
     public Collection<Eventos> consultaEventos()
             throws SQLException {
         Collection<Eventos> coleccionRetorno;
@@ -57,6 +63,12 @@ public class EventosDao extends ConnectionDb {
         return coleccionRetorno;
     }
 
+    /**
+     * Consulta estado de los eventos
+     *
+     * @return coleccion de String
+     * @throws java.sql.SQLException excepcion sql
+     */
     public Collection<String> consultaEstadoEvento()
             throws SQLException {
         Collection<String> coleccionRetorno;
@@ -86,6 +98,20 @@ public class EventosDao extends ConnectionDb {
         return coleccionRetorno;
     }
 
+    /**
+     * Inserta datos a la tabla eventos
+     *
+     * @param documento documento cliente
+     * @param tipoDocumento tipo documento cliente
+     * @param fecha fecha eventos
+     * @param nombreEvento nombre evento
+     * @param estado estado del evento
+     * @param descripcion descripción del eventos
+     * @param servicios servicios serapado por comas
+     * @param subtotal subtotal de valor evento en caso de tenerlo
+     * @return id evento creado
+     * @throws java.sql.SQLException excepcion sql
+     */
     public int InsertarEventoFactura(String documento, String tipoDocumento, Date fecha, String nombreEvento, String estado, String descripcion, String servicios, double subtotal)
             throws SQLException {
 
@@ -136,6 +162,13 @@ public class EventosDao extends ConnectionDb {
         return id;
     }
 
+    /**
+     * Elimina eventos con procedimiento almacenado
+     *
+     * @param id id evento a eliminar
+     * @return id evento eliminado
+     * @throws java.sql.SQLException excepcion sql
+     */
     public int eliminarEventoFactura(int id)
             throws SQLException {
 
@@ -161,6 +194,14 @@ public class EventosDao extends ConnectionDb {
         return id;
     }
 
+    /**
+     * Funcion para recolectar información de base de datos en un objeto
+     * personalizado
+     *
+     * @param ars objeto ResultSet
+     * @return Objeto Eventos
+     * @throws java.sql.SQLException
+     */
     private Eventos getDataEventos(ResultSet ars)
             throws SQLException {
         Eventos returnServices;

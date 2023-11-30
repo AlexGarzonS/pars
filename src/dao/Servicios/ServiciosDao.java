@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dao.Servicios;
 
 import ControlErrores.ControlErrores;
@@ -17,7 +13,7 @@ import modelo.Servicios.Servicios;
 
 /**
  *
- * @author Dev
+ * @author JGARZON
  */
 public class ServiciosDao extends ConnectionDb {
 
@@ -26,6 +22,12 @@ public class ServiciosDao extends ConnectionDb {
     private static final String cs_INSERTAR_SERVICIO = "{call sp_InsertarServicio(?,?,?)}";
     private static final String cs_ACTUALIZAR_SERVICIO = "UPDATE servicios set ";
 
+    /**
+     * Funcion que trae coleccion de servicios consultados en base de datos
+     *
+     * @return coleccion de facturas
+     * @throws SQLException excepcion sql
+     */
     public Collection<Servicios> consultaServicios()
             throws SQLException {
         Collection<Servicios> coleccionRetorno;
@@ -55,6 +57,13 @@ public class ServiciosDao extends ConnectionDb {
         return coleccionRetorno;
     }
 
+    /**
+     * Funcion que trae valor de servicio registrado en base de datos
+     *
+     * @param a_id id de servicio
+     * @return Objeto servicios
+     * @throws SQLException excepcion sql
+     */
     public Servicios buscarValorServicio(double a_id)
             throws SQLException {
         Servicios retorno;
@@ -90,6 +99,13 @@ public class ServiciosDao extends ConnectionDb {
         return retorno;
     }
 
+    /**
+     * Funcion que se encarga de realizar inserción de los servicios en la tabla
+     * servicios
+     *
+     * @param a_servicio objeto servicio
+     * @throws SQLException excepcion sql
+     */
     public void insertServicio(Servicios a_servicio)
             throws SQLException {
         CallableStatement statement;
@@ -97,13 +113,12 @@ public class ServiciosDao extends ConnectionDb {
 
         try {
 
-            if (a_servicio != null) 
-            {
+            if (a_servicio != null) {
                 int in;
                 in = 1;
-                
+
                 statement = conectar().prepareCall(cs_INSERTAR_SERVICIO);
-                
+
                 statement.setString(in++, a_servicio.getNombre_servicio());
                 statement.setString(in++, a_servicio.getDescripcion());
                 statement.setDouble(in++, a_servicio.getValor());
@@ -120,6 +135,13 @@ public class ServiciosDao extends ConnectionDb {
 
     }
 
+    /**
+     * Funcion que se encarga de realizar actualización de los servicios en la
+     * tabla servicios
+     *
+     * @param a_script objeto servicio
+     * @throws SQLException excepción sql
+     */
     public void UpdateServicio(String a_script)
             throws SQLException {
         PreparedStatement ps;
@@ -146,6 +168,14 @@ public class ServiciosDao extends ConnectionDb {
 
     }
 
+    /**
+     * Funcion para recolectar información de base de datos en un objeto
+     * personalizado
+     *
+     * @param ars objeto ResultSet
+     * @return objeto servicios
+     * @throws SQLException
+     */
     private Servicios getDataServices(ResultSet ars)
             throws SQLException {
         Servicios returnServices;

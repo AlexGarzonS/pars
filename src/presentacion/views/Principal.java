@@ -4,7 +4,6 @@
  */
 package presentacion.views;
 
-import javax.swing.JLabel;
 import presentacion.logica.PrincipalVista;
 
 /**
@@ -13,6 +12,7 @@ import presentacion.logica.PrincipalVista;
  */
 public class Principal extends javax.swing.JPanel {
 
+    /*Objeto de tipo PrincipalVista*/
     private PrincipalVista vista;
     
     public Principal() {
@@ -125,6 +125,7 @@ public class Principal extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /*Renderiza mensajes en el Jpanel principal*/
     private void renderMisionVision()
     {
         jLabelMision.setText(getVista().getMision());
@@ -132,7 +133,7 @@ public class Principal extends javax.swing.JPanel {
         jLabelHacemos.setText(getVista().getHacemos());
         
     }
-
+    /*Instanciación PrincipalVista*/
     private PrincipalVista getVista() {
         vista = new PrincipalVista();
         return vista;

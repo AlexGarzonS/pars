@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package bussines.Facturas;
 
 import ControlErrores.ControlErrores;
@@ -13,10 +9,16 @@ import modelo.Facturas.Facturas;
 
 /**
  *
- * @author Dev
+ * @author JGARZON
  */
 public class FacturasBusiness extends ControlErrores {
 
+    /**
+     *
+     * Colección de facturas consultadas en la base de datos
+     *
+     * @return coleccion de facturas
+     */
     public Collection<Facturas> ConsultarFacturas() {
         Collection<Facturas> coleccionReturn;
         coleccionReturn = null;
@@ -38,13 +40,19 @@ public class FacturasBusiness extends ControlErrores {
 
         return coleccionReturn;
     }
-    
-        public Collection<Facturas> ConsultarFacturasEstado(String estado) {
+
+    /**
+     *
+     * Coleccion de facturas con los diferentes estados
+     *
+     * @param estado Estado a buscar
+     * @return coleccion de facturas
+     */
+    public Collection<Facturas> ConsultarFacturasEstado(String estado) {
         Collection<Facturas> coleccionReturn;
         coleccionReturn = null;
         try {
-            if(isValidString(estado))
-            {
+            if (isValidString(estado)) {
                 Collection<Facturas> coleccion;
                 coleccion = new ArrayList<>();
                 FacturasDao facturaDao;

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package presentacion.logica;
 
 import ControlErrores.ControlErrores;
@@ -22,29 +18,36 @@ import modelo.Servicios.Servicios;
 
 /**
  *
- * @author Dev
+ * @author JGARZON
  */
 public class EventosVista {
 
+    /*Objeto Especializado para controlar errores*/
     private ControlErrores e;
+    /*Objeto ServiciosBussines en cargado de la logica del negocio*/
     private ServiciosBussines service;
+    /*Objeto EventosBusiness en cargado de la logica del negocio*/
     private EventosBusiness event;
 
+    /*instancia ControlErrores*/
     private ControlErrores getE() {
         e = new ControlErrores();
         return e;
     }
 
+    /*instancia ServiciosBussines*/
     private ServiciosBussines getService() {
         service = new ServiciosBussines();
         return service;
     }
 
+    /*instancia EventosBusiness*/
     private EventosBusiness getEvent() {
         event = new EventosBusiness();
         return event;
     }
 
+    /*Función encarga de llenar lista de estado evento*/
     public JComboBox<String> llenarListaEstados() {
         JComboBox<String> returnser;
 
@@ -72,6 +75,7 @@ public class EventosVista {
         return returnser;
     }
 
+    /*Función encarga de llenar lista de servicios para el evento*/
     public Choice llenarListaServicios() {
         Choice returnser;
 
@@ -99,6 +103,7 @@ public class EventosVista {
         return returnser;
     }
 
+    /*Función encarga de llenar tabla de servicios, cuando se cargan nuevos servicios al evento*/
     public Object[] llenartablaServicios(String seleccion) {
 
         Object[] obj;
@@ -141,6 +146,7 @@ public class EventosVista {
         return obj;
     }
 
+    /*Funcion encargada de trae los valores de los diferentes servicios*/
     public double valorTotalServicios(String seleccion) {
 
         double obj;
@@ -171,6 +177,17 @@ public class EventosVista {
         return obj;
     }
 
+    /*Funcion encargada de crear los eventos con los datos que se capturan desde el JPanel
+        * @param doc de tipo string
+        * @param tdoc de tipo string
+        * @param fechaCaptura de tipo Date
+        * @param nombreEvento de tipo string
+        * @param estadoEvento de tipo string
+        * @param descripcion de tipo string
+        * @param servicios de tipo string
+        * @param subtotal de tipo string
+        * @param total de tipo double
+     */
     public int insertarEvento(String doc, String tdoc, Date fechaCaptura, String nombreEvento, String estadoEvento, String descripcion, String servicios, String subtotal,
             double total) {
         int id;
@@ -217,6 +234,7 @@ public class EventosVista {
         return id;
     }
 
+    /*Funcion encarga de realiza el llenado de model de datos para un jtable*/
     public DefaultTableModel ConsultarEventos() {
         DefaultTableModel model;
 
@@ -252,17 +270,21 @@ public class EventosVista {
         }
         return model;
     }
-    
+
+    /*Función encargada de eliminar un factura
+        *@param id de tipo int
+        *
+     */
     public void eliminarEvento(int id) {
 
         try {
-            
-           getEvent().eliminarEventoFactura(id);
+
+            getEvent().eliminarEventoFactura(id);
 
         } catch (Exception ex) {
             System.out.println("EventosVista::insertarEvento " + ex.getMessage());
         }
-  
+
     }
 
 }
