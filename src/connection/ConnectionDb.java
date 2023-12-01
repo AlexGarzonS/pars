@@ -32,7 +32,10 @@ public class ConnectionDb {
         return cn;
     }
 
-    /*Cerramos las posible conexiones echar a la base de datos*/
+    /**
+     * Cerramos las posible conexiones echar a la base de datos
+     * @throws SQLException excepcion sql
+     */
     public void CerraConector()
             throws SQLException {
         try {
@@ -46,7 +49,10 @@ public class ConnectionDb {
         }
     }
 
-    /*cerramos objetos ResultSet */
+    /**
+     * cerramos objetos ResultSet 
+     * @throws SQLException excepcion sql
+     */
     public static void closeRs(ResultSet ars_rs)
             throws SQLException {
         if (ars_rs != null) {
@@ -54,7 +60,10 @@ public class ConnectionDb {
         }
     }
 
-    /*cerramos objetos PreparedStatement */
+    /**
+     * cerramos objetos PreparedStatement 
+     * @throws SQLException excepcion sql
+     */
     public static void closePs(PreparedStatement ars_ps)
             throws SQLException {
         if (ars_ps != null) {
@@ -62,7 +71,10 @@ public class ConnectionDb {
         }
     }
 
-    /*cerramos objetos CallableStatement */
+    /**
+     * cerramos objetos CallableStatement 
+     * @throws SQLException excepcion sql
+     */
     public static void closeCall(CallableStatement ars_ps)
             throws SQLException {
         if (ars_ps != null) {
